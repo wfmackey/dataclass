@@ -4,11 +4,13 @@
     install.packages("tidyverse")
     install.packages("placement")
     install.packages("readxl")
+    install.packages("maps")
     
     ##Loading packages (done every session)
     library(tidyverse)
     library(placement)
     library(readxl)
+    library(maps)
     
     # This tells R to prefer non-scientific notation (dw about this for now)
     options(scipen=10000)
@@ -24,7 +26,7 @@
     ##You can do this view the "files" tab on the bottom right hand side
     ##Navigate to your folder of choice, then hit the settings icon, hit "set as working directory"
               
-              setwd("~/Documents/git/dataclass/intern_data_class1806")
+              setwd("~/Documents/GitHub/dataclass/intern_data_class1806")
     
               #setwd("~/Documents/intern_data_class1806")
     
@@ -74,14 +76,16 @@
                               av.income = tot.income/earners,
                               sa3_1 = floor(sa3/10000)
                        )
+    
               
+    ## Sidenote:           
     # Great! Now we're going to do exactly the same thing, but using the 'piping' functions %>%
     # that are enabled by the tidyverse. Here's how they work:
               sum(1, 2)  # this equals three: sum of 1 and 2
               one <- 1   # defining one as 1
               two <- 2   # and two as 2
               sum(one, two) # now this also equals two
-              sum(sum(one, two), two) # and this equals five
+              sum(sum(one, two), two) # and this equals five: sum(sum(one, two), two) = sum(3, two) = sum(3, 2) = 5
               
              # With piping, we can take the results of one function and 'pipe' it into another
              # so: 
@@ -125,11 +129,17 @@
         # And looking at an ugly (but still informative) histogram
         hist(data$av.income)
         
-        # Let's look at a ~better~ histogram
+        # Let's look at a ~better~ histogram using ggplot
         ggplot(data) +
-            geom_histogram(aes(av.income), fill=gorange) +
+            geom_histogram(aes(av.income), fill=gorange, color="white") +
             theme_minimal()
     
+        
+        # Let's look at a ~better~ histogram
+        ggplot(data) +
+          geom_density(aes(med.income), fill=gorange, color="black", alpha = 0.7) +
+          geom_density(aes(av.income), fill=gdark, color="black", alpha = 0.7) +
+          theme_minimal()
     ##  All looks okay. Cool. Cool cool cool. Now we'll do the correspondence portion of the Excel task
     #   Read in the correspondence table
         
@@ -224,16 +234,17 @@
     )
     
     # Let's see if it worked:
-    drive_time
+    drive_time[,1:6]
     
     # Rather than manually looking through each observations (and we should spotcheck some observations),
     # can quickly look at a histogram to see if there are any funny numbers:
-    ggplot(drive_time) + geom_histogram(aes(dist_num), fill = gorange) + theme_minimal()
+    ggplot(drive_time) + geom_histogram(aes(dist_num), fill = gorange, color="white") + theme_minimal()
     
     
     ##Done, great. Now we can export to csv and create a 'Grattan style' graph with the data
-    #Combine our location and income data with the travel-time data:
-    final_data <- bind_cols(data, drive_time) %>% 
+    #Combine our variables (columns) of our income data with the travel-time data:
+    final_data <- bind_cols(data,
+                            drive_time) %>% 
                   select(-input_url) ##this variable is long and annoying and we'll drop it right here
     
     
@@ -251,9 +262,9 @@
 
     ############ EXTRA FUN ACTIVITIES
 
-#OLS regression
-    fit <- lm(av.income ~ time_mins, final_data)
-    summary(fit)
+#simple OLS regression
+    regression <- lm(av.income ~ time_mins, final_data)
+    summary(regression)
     
 # Let's create a base object for our graphics:    
 base <- ggplot(final_data, aes(x=av.income, y=time_mins))
@@ -277,8 +288,8 @@ base +
 # Let's look at this on a log-scale
 base +
   geom_point(aes(color=State)) +
-  geom_smooth(method=lm, se=FALSE) +
-  scale_y_log10()
+  geom_smooth(method=lm, se=FALSE, color=gorange) +
+  scale_y_log10(limits = c(1,5000))
 
 ##Looks like we see consistent negative relationships between time and income, except for Darwin. Why is this? And why does ACT have such a low absolute slope coefficient?
 ## Let's look at it with confidence intervals and marginal rugs:
@@ -286,20 +297,17 @@ base +
 base +
   geom_point(aes(color=State)) +
   geom_smooth(method=lm, se=FALSE, aes(fill=State, color=State)) +
-scale_y_log10()
+  scale_y_log10(limits = c(1,5000))
 
 # Woah, NT has a positive relationship. That's ood. Let's look at the standard errors there:
 base +
   geom_point(aes(color=State)) +
   geom_smooth(method=lm, se=TRUE, aes(fill=State, color=State)) +
-  scale_y_log10()
+  scale_y_log10(limits = c(1,5000))
 
 
 ##Well the NT confidence intervals are crazy. We should take this into consideration when we make any statements about driving time and income!
 ##ALso looks like QLD has its maximum interval close to zero. Would be interesting to look at this with a fixed effects regression or something of the like.
-
-# We can just 
-?placement
 
 # geocode(location, output = c("latlon", "latlona", "more", "all"),
 #         source = c("google", "dsk"), messaging = FALSE, force = ifelse(source ==
@@ -307,29 +315,35 @@ base +
 #         client = "", signature = "", nameType = c("long", "short"), data)
 
 
-latlons <-  geocode(paste0(data$name, ", " , data$State, ", Australia"),
-            output = "latlon",
-            source = "google")
-
+latlons <-  geocode_url(paste0(data$name, ", " , data$State, ", Australia"),
+                        privkey = internkey)
+                    
 final_data <- bind_cols(final_data, latlons)
 
 aus.map <- map_data("world") %>% filter(region=="Australia")
-aus.map
 
-# ## Map with background
-map.income <- 
+# Let's make Australia
+australia <- 
   ggplot() +
-  geom_polygon(data = aus.map, aes(x=long, y = lat), fill="grey", color="white", linetype="solid", alpha=0.4) +
-  geom_point(data=final_data, aes(x=lon, y=lat, size=av.income), show.legend = FALSE, alpha=.7, color=gorange) +
-  # scale_size_continuous(range = c(.5, 10)) +
-  # geom_text_repel(data=city %>% arrange(count) %>% tail(10), aes(x=long, y=lat, label=name_cap), size=2) +
-  # theme_void() +
+  geom_polygon(data = aus.map, aes(x=long, y = lat, group = group), fill="grey", color="white", linetype="solid", alpha=0.6) +
+  theme_void() +
   ylim(-44,-10) + xlim(113,154)
-  # coord_map()
-map.income
 
-ggplot() + geom_point(data=city, aes(x=long, y=lat, size=count), show.legend = FALSE, alpha=.7, color=gorange) +
-  scale_size_continuous(range = c(.5, 10)) + theme_nothing()
-#theme(legend.position="bottom")
-map.followers
-# 
+  australia
+
+# Now we overlay our income and geographical data onto our little Australia
+  incomemap <-  australia + 
+                geom_point(data=final_data, 
+                           aes(x=lng, y=lat, size=av.income, color=State), 
+                           show.legend = T, alpha=.7) +
+                scale_size_continuous(range = c(0.01, 10))
+  
+  
+  incomemap  
+  
+
+  
+  
+  
+  
+  
