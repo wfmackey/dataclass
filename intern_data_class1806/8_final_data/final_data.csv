@@ -1,0 +1,334 @@
+"","data.sa3_name","drive_time.origin","data.state","drive_time.time_mins","data.mean"
+"1","Queanbeyan","Queanbeyan NSW 2620, Australia","NSW",183.78,66436.2224
+"2","Snowy Mountains","Snowy Mountains, Kosciuszko National Park NSW 2627, Australia","NSW",321.28,48153.3168
+"3","South Coast","South Coast, NSW, Australia","NSW",314.95,42638.539
+"4","Goulburn - Mulwaree","Goulburn NSW 2580, Australia","NSW",125.3,50038.0719
+"5","Young - Yass","Yass St, Young NSW 2594, Australia","NSW",233.88,54680.2159
+"6","Gosford","Gosford NSW 2250, Australia","NSW",66.67,53948.1855
+"7","Wyong","Wyong NSW 2259, Australia","NSW",75.18,48515.9843
+"8","Bathurst","Bathurst NSW 2795, Australia","NSW",172.27,53620.1109
+"9","Lachlan Valley","Lachlan Valley Way, New South Wales, Australia","NSW",187.53,48386.5399
+"10","Lithgow - Mudgee","Mudgee St, South Bowenfels NSW 2790, Australia","NSW",126.17,53934.7947
+"11","Orange","Orange NSW 2800, Australia","NSW",213.68,55316.2789
+"12","Clarence Valley","Clarence Valley, NSW, Australia","NSW",456.53,39620.0295
+"13","Coffs Harbour","Coffs Harbour NSW 2450, Australia","NSW",340.8,43925.1717
+"14","Bourke - Cobar - Coonamble","","NSW",NA,54182.5245
+"15","Broken Hill and Far West","Broken Hill NSW 2880, Australia","NSW",773.3,51906.0885
+"16","Dubbo","Dubbo NSW 2830, Australia","NSW",301.32,49281.4917
+"17","Lower Hunter","Hunter Region, NSW, Australia","NSW",196.62,59348.0256
+"18","Maitland","Maitland NSW 2320, Australia","NSW",118.43,59921.5982
+"19","Port Stephens","Port Stephens, NSW, Australia","NSW",126.43,50621.6876
+"20","Upper Hunter","Upper Hunter, NSW, Australia","NSW",215.33,60899.1266
+"21","Dapto - Port Kembla","New Dapto Rd, Wollongong NSW 2500, Australia","NSW",82.78,53904.6654
+"22","Kiama - Shellharbour","Kiama NSW 2533, Australia","NSW",108.23,54494.9765
+"23","Wollongong","Wollongong NSW 2500, Australia","NSW",85.2,59477.47
+"24","Great Lakes","Great Lakes, NSW, Australia","NSW",169.88,40714.7274
+"25","Kempsey - Nambucca","Nambucca Dr, Scotts Head NSW 2447, Australia","NSW",312.43,38968.3439
+"26","Lord Howe Island","Lord Howe Island, New South Wales, Australia","NSW",NA,46438.1785
+"27","Port Macquarie","Port Macquarie NSW 2444, Australia","NSW",249.92,44564.5824
+"28","Taree - Gloucester","Gloucester Rd, New South Wales 2429, Australia","NSW",218.67,42234.5832
+"29","Albury","Albury NSW 2640, Australia","NSW",331.03,52121.4572
+"30","Lower Murray","Murray, NSW, Australia","NSW",493.02,43795.7273
+"31","Upper Murray exc. Albury","681 Young St, Albury NSW 2640, Australia","NSW",328.63,44764.3285
+"32","Armidale","Armidale NSW 2350, Australia","NSW",342.7,46399.122
+"33","Inverell - Tenterfield","Bonshaw NSW 2361, Australia","NSW",493.33,37729.6949
+"34","Moree - Narrabri","Narrabri NSW 2390, Australia","NSW",362.08,51594.7524
+"35","Tamworth - Gunnedah","Gunnedah Rd, New South Wales 2340, Australia","NSW",285.93,48393.2353
+"36","Lake Macquarie - East","Lake Macquarie NSW 2283, Australia","NSW",105.15,57660.7848
+"37","Lake Macquarie - West","Lake Macquarie NSW 2283, Australia","NSW",105.15,53328.861
+"38","Newcastle","Newcastle NSW, Australia","NSW",128.25,59382.6185
+"39","Richmond Valley - Coastal","North St, Casino NSW 2470, Australia","NSW",471,44669.477
+"40","Richmond Valley - Hinterland","Queensland Rd, Casino NSW 2470, Australia","NSW",473.23,41944.4492
+"41","Tweed Valley","Tweed Valley Way, New South Wales, Australia","NSW",527.38,44928.3658
+"42","Griffith - Murrumbidgee (West)","Murrumbidgee Ave, Griffith NSW 2680, Australia","NSW",368.32,47106.6026
+"43","Tumut - Tumbarumba","Tumut River, New South Wales, Australia","NSW",270.12,50337.1331
+"44","Wagga Wagga","Wagga Wagga NSW 2650, Australia","NSW",285.2,52513.1381
+"45","Shoalhaven","Shoalhaven, NSW, Australia","NSW",162.02,45455.0706
+"46","Southern Highlands","Southern Highlands, NSW, Australia","NSW",89.75,55848.5632
+"47","Baulkham Hills","Baulkham Hills NSW 2153, Australia","NSW",28.05,71204.4631
+"48","Dural - Wisemans Ferry","Pitt Town Dural Rd, New South Wales, Australia","NSW",56.17,78670.95
+"49","Hawkesbury","Hawkesbury, NSW, Australia","NSW",157.72,55505.9819
+"50","Rouse Hill - McGraths Hill","Windsor Rd & White Hart Dr, Rouse Hill NSW 2155, Australia","NSW",38.68,64881.7737
+"51","Blacktown","Blacktown NSW 2148, Australia","NSW",39.85,51669.5177
+"52","Blacktown - North","1 Bessemer St, Blacktown NSW 2148, Australia","NSW",35.82,60727.278
+"53","Mount Druitt","Mount Druitt NSW 2770, Australia","NSW",45.73,48839.5953
+"54","Botany","Botany NSW 2019, Australia","NSW",19.68,56490.2057
+"55","Marrickville - Sydenham - Petersham","Sydenham Rd, Marrickville NSW 2204, Australia","NSW",20.65,64169.8295
+"56","Sydney Inner City","151 Glebe Point Rd, Glebe NSW 2037, Australia","NSW",9.37,71897.437
+"57","Eastern Suburbs - North","North Bondi NSW 2026, Australia","NSW",23.55,115291.4403
+"58","Eastern Suburbs - South","Eastern Suburbs Railway, New South Wales, Australia","NSW",8.72,74351.3011
+"59","Bankstown","Bankstown NSW 2200, Australia","NSW",33.82,49934.2932
+"60","Canterbury","Canterbury NSW 2193, Australia","NSW",23,46886.7703
+"61","Hurstville","Hurstville NSW 2220, Australia","NSW",32.4,58035.7272
+"62","Kogarah - Rockdale","Kogarah NSW 2217, Australia","NSW",24.2,54559.6987
+"63","Canada Bay","Canada Bay NSW 2046, Australia","NSW",19.47,76939.0732
+"64","Leichhardt","Leichhardt NSW 2040, Australia","NSW",12.73,96274.2725
+"65","Strathfield - Burwood - Ashfield","Strathfield NSW 2135, Australia","NSW",27.52,60213.964
+"66","Chatswood - Lane Cove","Chatswood NSW 2067, Australia","NSW",14.87,97674.727
+"67","Hornsby","Hornsby NSW 2077, Australia","NSW",34.35,63781.4963
+"68","Ku-ring-gai","Ku-Ring-Gai, NSW, Australia","NSW",21.75,105565.2559
+"69","North Sydney - Mosman","Mosman NSW 2088, Australia","NSW",15.78,119992.727
+"70","Manly","Manly NSW 2095, Australia","NSW",33.23,98626.5897
+"71","Pittwater","Pittwater, NSW, Australia","NSW",65.27,79000.1405
+"72","Warringah","Warringah, NSW, Australia","NSW",45.68,71128.5819
+"73","Camden","Camden NSW 2570, Australia","NSW",59.45,61183.6811
+"74","Campbelltown (NSW)","Campbelltown NSW 2560, Australia","NSW",52.17,51981.9697
+"75","Wollondilly","Wollondilly, NSW, Australia","NSW",85.63,57381.8098
+"76","Blue Mountains","Blue Mountains, New South Wales, Australia","NSW",58.7,56781.4556
+"77","Penrith","Penrith NSW 2750, Australia","NSW",56.42,56527.0304
+"78","Richmond - Windsor","Hawkesbury, NSW, Australia","NSW",157.72,53412.5535
+"79","St Marys","St Marys NSW 2760, Australia","NSW",51.47,51773.2964
+"80","Auburn","Auburn NSW 2144, Australia","NSW",36.23,46223.9257
+"81","Carlingford","Carlingford NSW 2118, Australia","NSW",26.93,57530.2245
+"82","Merrylands - Guildford","Merrylands Rd, New South Wales, Australia","NSW",34.58,47864.2987
+"83","Parramatta","Parramatta NSW 2150, Australia","NSW",34.73,54117.8023
+"84","Pennant Hills - Epping","Pennant Hills Rd, New South Wales, Australia","NSW",27.9,72580.3678
+"85","Ryde - Hunters Hill","Hunters Hill NSW 2110, Australia","NSW",15.4,70791.5801
+"86","Bringelly - Green Valley","Bringelly Pl, Bonnyrigg Heights NSW 2177, Australia","NSW",45.4,51310.1979
+"87","Fairfield","Fairfield NSW 2165, Australia","NSW",44.23,46606.6794
+"88","Liverpool","Liverpool NSW 2170, Australia","NSW",41.15,53858.9135
+"89","Cronulla - Miranda - Caringbah","Miranda NSW 2228, Australia","NSW",38.28,69714.7366
+"90","Sutherland - Menai - Heathcote","Heathcote Rd, New South Wales, Australia","NSW",42.83,64067.1667
+"91","Ballarat","Ballarat VIC, Australia","Vic",86.88,51185.2171
+"92","Creswick - Daylesford - Ballan","2349 Ballan-Daylesford Rd, Sailors Falls VIC 3461, Australia","Vic",77.27,47982.5841
+"93","Maryborough - Pyrenees","Pyrenees Hwy, Maryborough VIC 3465, Australia","Vic",122.47,39875.5706
+"94","Bendigo","Bendigo VIC 3550, Australia","Vic",111.1,49085.0933
+"95","Heathcote - Castlemaine - Kyneton","","Vic",NA,49855.0643
+"96","Loddon - Elmore","Tandarra-Elmore Rd, Victoria, Australia","Vic",141.38,40479.2725
+"97","Barwon - West","Barwon, 229 Adderley St, West Melbourne VIC 3003, Australia","Vic",9.55,51621.534
+"98","Geelong","Geelong VIC 3220, Australia","Vic",66.53,54575.3213
+"99","Surf Coast - Bellarine Peninsula","Torquay VIC 3228, Australia","Vic",80.8,54252.8262
+"100","Upper Goulburn Valley","Goulburn Valley Fwy, Mangalore VIC 3663, Australia","Vic",85.27,45921.5168
+"101","Wangaratta - Benalla","Wangaratta VIC 3677, Australia","Vic",159.53,44916.0909
+"102","Wodonga - Alpine","1 Koetong Cres, West Wodonga VIC 3690, Australia","Vic",197.82,47913.3983
+"103","Baw Baw","Baw Baw, VIC, Australia","Vic",95.55,50078.2443
+"104","Gippsland - East","East Gippsland, VIC, Australia","Vic",257.22,43339.3242
+"105","Gippsland - South West","Gippsland, VIC, Australia","Vic",263.53,45862.3741
+"106","Latrobe Valley","Traralgon VIC 3844, Australia","Vic",114.05,56163.247
+"107","Wellington","Wellington, VIC, Australia","Vic",160.25,51397.2381
+"108","Brunswick - Coburg","Brunswick St, Coburg VIC 3058, Australia","Vic",22.08,57910.7464
+"109","Darebin - South","Darebin, VIC, Australia","Vic",34.03,65436.376
+"110","Essendon","Essendon VIC 3040, Australia","Vic",22.43,70442.3034
+"111","Melbourne City","Melbourne VIC 3004, Australia","Vic",0.02,75126.8516
+"112","Port Phillip","Port Phillip, VIC, Australia","Vic",16.03,84041.7767
+"113","Stonnington - West","Stonnington, VIC, Australia","Vic",23.77,109051.3275
+"114","Yarra","Yarra, VIC, Australia","Vic",14.42,74503.0635
+"115","Boroondara","Boroondara, VIC, Australia","Vic",27.1,92452.315
+"116","Manningham - West","Manningham, VIC, Australia","Vic",33.3,60357.9151
+"117","Whitehorse - West","Whitehorse, VIC, Australia","Vic",33.23,60612.3403
+"118","Bayside","Bayside, VIC, Australia","Vic",32.92,94725.4033
+"119","Glen Eira","Glen Eira, VIC, Australia","Vic",31.53,67725.0869
+"120","Kingston","Kingston VIC 3364, Australia","Vic",91.75,59345.7938
+"121","Stonnington - East","Stonnington, VIC, Australia","Vic",23.77,97477.2127
+"122","Banyule","Banyule, VIC, Australia","Vic",32.03,62426.7937
+"123","Darebin - North","Darebin, VIC, Australia","Vic",34.03,50435.3323
+"124","Nillumbik - Kinglake","Kinglake VIC 3763, Australia","Vic",76.88,65246.673
+"125","Whittlesea - Wallan","Wallan VIC 3756, Australia","Vic",55.7,50713.1914
+"126","Keilor","Keilor VIC 3036, Australia","Vic",24.23,58540.114
+"127","Macedon Ranges","Macedon Ranges, VIC, Australia","Vic",61.72,60834.4044
+"128","Moreland - North","Moreland, VIC, Australia","Vic",24.55,50521.2566
+"129","Sunbury","Sunbury VIC 3429, Australia","Vic",39.72,55956.8055
+"130","Tullamarine - Broadmeadows","Broadmeadows VIC 3047, Australia","Vic",27.67,48463.537
+"131","Knox","Knox, VIC, Australia","Vic",40.23,54060.8914
+"132","Manningham - East","Manningham, VIC, Australia","Vic",33.3,75047.6227
+"133","Maroondah","Maroondah, VIC, Australia","Vic",36.05,54908.9754
+"134","Whitehorse - East","Whitehorse, VIC, Australia","Vic",33.23,56383.0793
+"135","Yarra Ranges","Yarra Ranges, VIC, Australia","Vic",86.92,52477.4293
+"136","Cardinia","Cardinia VIC 3978, Australia","Vic",55.73,52575.6285
+"137","Casey - North","90-92 Victor Cres, Narre Warren VIC 3805, Australia","Vic",42.2,53702.6875
+"138","Casey - South","Casey, VIC, Australia","Vic",51.42,50416.362
+"139","Dandenong","Dandenong VIC 3175, Australia","Vic",38.17,44423.979
+"140","Monash","Monash, VIC, Australia","Vic",30.42,55416.7099
+"141","Brimbank","Brimbank, VIC, Australia","Vic",29.82,46859.9887
+"142","Hobsons Bay","Hobsons Bay, VIC, Australia","Vic",24.18,61498.3649
+"143","Maribyrnong","Maribyrnong VIC 3032, Australia","Vic",24.03,55974.6599
+"144","Melton - Bacchus Marsh","Bacchus Marsh VIC 3340, Australia","Vic",50.63,53347.8313
+"145","Wyndham","Wyndham, VIC, Australia","Vic",37.93,54855.4122
+"146","Frankston","Frankston VIC 3199, Australia","Vic",49.17,51123.8426
+"147","Mornington Peninsula","Mornington Peninsula, VIC, Australia","Vic",65.33,54799.6172
+"148","Grampians","Grampians VIC 3314, Australia","Vic",218.78,47660.089
+"149","Mildura","Mildura VIC 3500, Australia","Vic",359.05,44226.4647
+"150","Murray River - Swan Hill","481 Campbell St, Swan Hill VIC 3585, Australia","Vic",224.87,43233.3137
+"151","Campaspe","Campaspe, VIC, Australia","Vic",150.12,42981.1203
+"152","Moira","Moira, VIC, Australia","Vic",167.12,41581.7817
+"153","Shepparton","Shepparton VIC 3630, Australia","Vic",129.25,45977.3118
+"154","Glenelg - Southern Grampians","Glenelg River, Rocklands VIC 3401, Australia","Vic",243.47,49685.4475
+"155","Colac - Corangamite","Colac VIC 3250, Australia","Vic",113.6,44820.1235
+"156","Warrnambool","Warrnambool VIC 3280, Australia","Vic",182.02,49946.5681
+"157","Capalaba","Capalaba QLD 4157, Australia","Qld",30.42,58168.5193
+"158","Cleveland - Stradbroke","12 Emmett Dr, Cleveland QLD 4163, Australia","Qld",42.82,57941.9916
+"159","Wynnum - Manly","Wynnum Esplanade, Wynnum QLD 4178, Australia","Qld",32.47,60566.5884
+"160","Bald Hills - Everton Park","1969 Gympie Rd, Bald Hills QLD 4036, Australia","Qld",28.18,62734.7821
+"161","Chermside","Chermside QLD 4032, Australia","Qld",18.48,59777.6471
+"162","Nundah","Nundah QLD 4012, Australia","Qld",17.15,56762.4853
+"163","Sandgate","Sandgate QLD 4017, Australia","Qld",32.92,54482.7016
+"164","Carindale","Carindale QLD 4152, Australia","Qld",21,66271.0692
+"165","Holland Park - Yeronga","Holland St, Greenslopes QLD 4120, Australia","Qld",10.65,65420.7534
+"166","Mt Gravatt","Mount Gravatt QLD 4122, Australia","Qld",14.15,54556.351
+"167","Nathan","Nathan QLD 4111, Australia","Qld",15.47,56714.5016
+"168","Rocklea - Acacia Ridge","17-37 Colebard St E, Acacia Ridge QLD 4110, Australia","Qld",24.63,52936.0642
+"169","Sunnybank","Sunnybank QLD 4109, Australia","Qld",17.53,48918.8242
+"170","Centenary","Centenary Heights QLD 4350, Australia","Qld",95.47,66351.414
+"171","Kenmore - Brookfield - Moggill","3666 Moggill Rd, Moggill QLD 4070, Australia","Qld",34.3,82011.9546
+"172","Sherwood - Indooroopilly","Shop 5 699 Sherwood Road, Sherwood Court, Sherwood QLD 4075, Australia","Qld",22.35,78189.9971
+"173","The Gap - Enoggera","974 Waterworks Rd, The Gap QLD 4061, Australia","Qld",18.12,63920.9838
+"174","Brisbane Inner","Inner City Bypass, Queensland, Australia","Qld",13.57,68892.3183
+"175","Brisbane Inner - East","182 Riding Rd, Balmoral QLD 4171, Australia","Qld",15.6,77052.895
+"176","Brisbane Inner - North","162 Alfred St, Fortitude Valley QLD 4006, Australia","Qld",11.73,83740.4837
+"177","Brisbane Inner - West","29 McDougall St, Milton QLD 4064, Australia","Qld",6.97,78938.766
+"178","Cairns - North","Cairns North QLD 4870, Australia","Qld",1160.14,56910.9
+"179","Cairns - South","Cairns QLD, Australia","Qld",1157.25,51199.7238
+"180","Innisfail - Cassowary Coast","Innisfail QLD 4860, Australia","Qld",1084.47,43305.8472
+"181","Port Douglas - Daintree","Kiosk 1 17/11 Macrossan St, Port Douglas QLD 4877, Australia","Qld",1219.02,42693.2181
+"182","Tablelands (East) - Kuranda","Kuranda Scenic Railway, Queensland, Australia","Qld",1217.55,44617.0297
+"183","Darling Downs (West) - Maranoa","566 Ruthven St, Toowoomba City QLD 4350, Australia","Qld",96.28,46867.8
+"184","Darling Downs - East","Darling Downs, QLD, Australia","Qld",208.7,43940.7943
+"185","Granite Belt","Stanthorpe QLD 4380, Australia","Qld",161.23,38362.4102
+"186","Central Highlands (Qld)","Central Highlands, QLD, Australia","Qld",535.03,69732.591
+"187","Rockhampton","Rockhampton City QLD 4700, Australia","Qld",427.37,57389.6211
+"188","Biloela","Biloela QLD 4715, Australia","Qld",391.33,56817.1644
+"189","Gladstone","Gladstone Central QLD 4680, Australia","Qld",361.98,66744.2108
+"190","Broadbeach - Burleigh","177 Old Burleigh Rd, Broadbeach QLD 4218, Australia","Qld",64.7,52688.3344
+"191","Coolangatta","Coolangatta QLD 4225, Australia","Qld",69.98,48871.9564
+"192","Gold Coast - North","North St, Southport QLD 4215, Australia","Qld",52.17,50858.2584
+"193","Gold Coast Hinterland","Hinterland Dr, Mudgeeraba QLD 4213, Australia","Qld",54.53,48883.1154
+"194","Mudgeeraba - Tallebudgera","51 Railway St, Mudgeeraba QLD 4213, Australia","Qld",53.3,51821.2801
+"195","Nerang","Nerang QLD 4211, Australia","Qld",52.8,48724.6576
+"196","Ormeau - Oxenford","Entertainment Road, Oxenford QLD 4210, Australia","Qld",42.28,54908.9754
+"197","Robina","Robina QLD 4226, Australia","Qld",57.6,48764.83
+"198","Southport","Southport QLD 4215, Australia","Qld",54.85,47049.6917
+"199","Surfers Paradise","Surfers Paradise QLD 4217, Australia","Qld",59.57,60128.0397
+"200","Forest Lake - Oxley","Oxley QLD 4075, Australia","Qld",21.83,49743.4743
+"201","Ipswich Hinterland","","Qld",NA,45218.4998
+"202","Ipswich Inner","Ipswich Rd, Queensland, Australia","Qld",8.92,52056.735
+"203","Springfield - Redbank","Springfield QLD 4300, Australia","Qld",39.85,52347.9849
+"204","Beaudesert","Beaudesert QLD 4285, Australia","Qld",60.73,44495.3966
+"205","Beenleigh","Beenleigh QLD 4207, Australia","Qld",27.93,46983.8536
+"206","Browns Plains","Browns Plains QLD 4118, Australia","Qld",27.2,48643.1969
+"207","Jimboomba","Jimboomba QLD 4280, Australia","Qld",42.6,52934.9483
+"208","Loganlea - Carbrook","Carbrook QLD 4130, Australia","Qld",32.18,51557.9277
+"209","Springwood - Kingston","Springwood QLD 4127, Australia","Qld",20.88,49029.2983
+"210","Bowen Basin - North","Moranbah QLD 4744, Australia","Qld",675.62,72667.408
+"211","Mackay","Mackay QLD 4740, Australia","Qld",651.53,66830.1351
+"212","Whitsunday","Whitsunday Islands, Queensland, Australia","Qld",NA,49283.7235
+"213","Bribie - Beachmere","Beachmere QLD 4510, Australia","Qld",53.68,44332.4752
+"214","Caboolture","Caboolture QLD 4510, Australia","Qld",50.5,44904.9319
+"215","Caboolture Hinterland","Hinterland Dr, Little Mountain QLD 4551, Australia","Qld",74.27,43559.1565
+"216","Narangba - Burpengary","Burpengary Rd, Narangba QLD 4504, Australia","Qld",41.52,50280.2222
+"217","Redcliffe","Redcliffe QLD 4020, Australia","Qld",42.25,50886.1559
+"218","The Hills District","Arana Hills QLD 4054, Australia","Qld",23.87,62872.0378
+"219","North Lakes","North Lakes QLD 4509, Australia","Qld",36.77,55290.6132
+"220","Strathpine","Strathpine QLD 4500, Australia","Qld",35.37,50425.2892
+"221","Far North","20 Octagonal Cres, Kelso QLD 4815, Australia","Qld",922.6,48893.1585
+"222","Outback - North","59 Arlington Esplanade, Clifton Beach QLD 4879, Australia","Qld",1177.65,65411.8262
+"223","Outback - South","815 Zillmere Rd, Aspley QLD 4034, Australia","Qld",25.63,49277.0281
+"224","Buderim","Buderim QLD 4556, Australia","Qld",76.67,52079.053
+"225","Caloundra","Caloundra QLD 4551, Australia","Qld",77.48,48482.5073
+"226","Maroochy","Maroochydore QLD 4558, Australia","Qld",87.12,47459.227
+"227","Noosa","Noosa, QLD, Australia","Qld",112.87,47410.1274
+"228","Sunshine Coast Hinterland","Hinterland Dr, Little Mountain QLD 4551, Australia","Qld",74.27,45174.9797
+"229","Nambour","Nambour QLD 4560, Australia","Qld",83.9,45940.4871
+"230","Noosa Hinterland","2/84 Memorial Dr, Eumundi QLD 4562, Australia","Qld",89.7,45702.8004
+"231","Toowoomba","Toowoomba QLD, Australia","Qld",98.58,50837.0563
+"232","Charters Towers - Ayr - Ingham","","Qld",NA,50187.6025
+"233","Townsville","Townsville City QLD 4810, Australia","Qld",908.02,59372.5754
+"234","Bundaberg","Bundaberg Central QLD 4670, Australia","Qld",256.47,45303.3082
+"235","Burnett","Burnett River, Queensland, Australia","Qld",268.55,39551.9596
+"236","Gympie - Cooloola","Cooloola QLD 4580, Australia","Qld",166.33,41022.7158
+"237","Hervey Bay","Hervey Bay QLD 4655, Australia","Qld",208.15,43534.6067
+"238","Maryborough","Maryborough QLD 4650, Australia","Qld",186.37,43861.5654
+"239","Adelaide City","Adelaide SA, Australia","SA",0,72072.6333
+"240","Adelaide Hills","Adelaide Hills, SA, Australia","SA",45.08,59533.265
+"241","Burnside","Burnside, SA, Australia","SA",15.12,83758.3381
+"242","Campbelltown (SA)","Campbelltown SA 5074, Australia","SA",19.22,52003.1718
+"243","Norwood - Payneham - St Peters","Norwood Payneham and St Peters, SA, Australia","SA",12.67,67087.908
+"244","Prospect - Walkerville","Walkerville SA 5081, Australia","SA",15.67,70999.1375
+"245","Unley","Unley SA 5061, Australia","SA",8.2,77848.5317
+"246","Gawler - Two Wells","Gawler Rd, South Australia, Australia","SA",50.8,50715.4232
+"247","Playford","Playford, SA, Australia","SA",43.98,45048.883
+"248","Port Adelaide - East","Port Adelaide SA 5015, Australia","SA",28.95,48180.0984
+"249","Salisbury","Salisbury SA 5108, Australia","SA",34.5,47174.6725
+"250","Tea Tree Gully","Tea Tree Gully SA 5091, Australia","SA",30.82,52518.7176
+"251","Holdfast Bay","Holdfast Bay, SA, Australia","SA",22.75,65648.397
+"252","Marion","Marion SA 5043, Australia","SA",21,50937.4873
+"253","Mitcham","Mitcham SA 5062, Australia","SA",17.18,63927.6792
+"254","Onkaparinga","Onkaparinga, SA, Australia","SA",42.85,48744.7438
+"255","Charles Sturt","Charles Sturt, SA, Australia","SA",20.82,53620.1109
+"256","Port Adelaide - West","Port Adelaide SA 5015, Australia","SA",28.95,50915.1693
+"257","West Torrens","West Torrens, SA, Australia","SA",13.68,52374.7665
+"258","Barossa","Barossa Valley, Tanunda SA 5352, Australia","SA",66.12,50783.4931
+"259","Lower North","South Australia, Australia","SA",695.55,49332.8231
+"260","Mid North","85 Ellen St, Port Pirie SA 5540, Australia","SA",158.8,51511.0599
+"261","Yorke Peninsula","Yorke Peninsula, SA, Australia","SA",138.97,48722.4258
+"262","Eyre Peninsula and South West","Eyre Peninsula, Cummins SA 5631, Australia","SA",412.35,57603.8739
+"263","Outback - North and East","4/34 Mileham St, Windsor NSW 2756, Australia","SA",861.29,59879.194
+"264","Fleurieu - Kangaroo Island","Kangaroo Island, South Australia, Australia","SA",233.6,42137.4999
+"265","Limestone Coast","Limestone Coast, SA, Australia","SA",236.25,47998.2067
+"266","Murray and Mallee","Mallee St & Murray St, Tailem Bend SA 5260, Australia","SA",70.27,42665.3206
+"267","Augusta - Margaret River - Busselton","17 Foreshore Parade, Busselton WA 6280, Australia","WA",150.23,50949.7622
+"268","Bunbury","Bunbury WA 6230, Australia","WA",115.63,62106.5304
+"269","Manjimup","Manjimup WA 6258, Australia","WA",199.32,47922.3255
+"270","Mandurah","Mandurah WA, Australia","WA",53.75,59953.9593
+"271","Cottesloe - Claremont","Claremont WA 6010, Australia","WA",18.05,122925.3122
+"272","Perth City","Perth, WA, Australia","WA",2.27,81149.3639
+"273","Bayswater - Bassendean","Bassendean WA 6054, Australia","WA",19.2,60158.169
+"274","Mundaring","Mundaring WA 6073, Australia","WA",42.03,62291.7698
+"275","Swan","Swan, WA, Australia","WA",63.5,59211.8858
+"276","Joondalup","Joondalup WA 6027, Australia","WA",23.95,66362.573
+"277","Stirling","Stirling WA 6021, Australia","WA",12.45,66691.7635
+"278","Wanneroo","Wanneroo WA 6065, Australia","WA",29.23,58447.4943
+"279","Armadale","Armadale WA 6112, Australia","WA",38.98,58299.0796
+"280","Belmont - Victoria Park","Victoria Park WA 6100, Australia","WA",14.67,61901.2048
+"281","Canning","Canning, WA, Australia","WA",24.6,59306.7373
+"282","Gosnells","Gosnells WA 6110, Australia","WA",33.27,55882.0402
+"283","Kalamunda","Kalamunda WA 6076, Australia","WA",33.22,63772.5691
+"284","Serpentine - Jarrahdale","Serpentine-Jarrahdale, WA, Australia","WA",50.02,62993.6709
+"285","South Perth","South Perth WA 6151, Australia","WA",13.9,79429.762
+"286","Cockburn","Cockburn, WA, Australia","WA",NA,62941.2236
+"287","Fremantle","Fremantle WA 6160, Australia","WA",32.3,74308.8969
+"288","Kwinana","Kwinana, WA, Australia","WA",32.87,58061.3929
+"289","Melville","Melville WA 6156, Australia","WA",22.85,74841.1812
+"290","Rockingham","Rockingham WA 6168, Australia","WA",43.6,62552.8904
+"291","Albany","Albany WA 6330, Australia","WA",275.77,47131.1524
+"292","Wheat Belt - North","L1/298 Fitzgerald Street, Northam WA 6401, Australia","WA",81.67,52204.0338
+"293","Wheat Belt - South","Wheat St, Casino NSW 2470, Australia","WA",2705.07,47464.8065
+"294","Kimberley","Kimberley, WA, Australia","WA",2259.35,60148.1259
+"295","East Pilbara","East Pilbara, WA, Australia","WA",NA,88516.5357
+"296","West Pilbara","Pilbara, WA, Australia","WA",NA,92812.7507
+"297","Esperance","Esperance WA 6450, Australia","WA",447.88,55809.5067
+"298","Gascoyne","Gascoyne, WA, Australia","WA",896.69,55338.5969
+"299","Goldfields","5/50 Colin St, West Perth WA 6005, Australia","WA",7.48,72876.0813
+"300","Mid West","2, Foreshore Business Centre, 209 Foreshore Dr, Geraldton WA 6530, Australia","WA",269.78,59795.5015
+"301","Brighton","Brighton TAS 7030, Australia","Tas",27.17,47420.1705
+"302","Hobart - North East","Hobart TAS 7000, Australia","Tas",0,53325.5133
+"303","Hobart - North West","North Hobart TAS 7000, Australia","Tas",5.22,46054.3089
+"304","Hobart - South and West","Hobart TAS 7000, Australia","Tas",0,53430.4079
+"305","Hobart Inner","374 Murray St, North Hobart TAS 7000, Australia","Tas",4.5,62954.6144
+"306","Sorell - Dodges Ferry","Dodges Ferry TAS 7173, Australia","Tas",34.8,46708.2263
+"307","Launceston","Launceston TAS 7250, Australia","Tas",145.78,50537.9951
+"308","Meander Valley - West Tamar","Valley Rd, Sidmouth TAS 7270, Australia","Tas",177.42,44856.9482
+"309","North East","North East Isle, Tasmania, Australia","Tas",NA,45401.5074
+"310","Central Highlands (Tas.)","Central Highlands, TAS, Australia","Tas",84.05,43992.1257
+"311","Huon - Bruny Island","Bruny Island, Tasmania, Australia","Tas",109.52,42612.8733
+"312","South East Coast","South East Cape, Tasmania, Australia","Tas",NA,39782.9509
+"313","Burnie - Ulverstone","57 Water St, Ulverstone TAS 7315, Australia","Tas",202.43,48047.3063
+"314","Devonport","Devonport TAS 7310, Australia","Tas",193.78,46439.2944
+"315","West Coast","West Coast, TAS, Australia","Tas",313.6,49051.6163
+"316","Darwin City","Darwin City NT 0800, Australia","NT",0,66652.707
+"317","Darwin Suburbs","","NT",NA,62913.3261
+"318","Litchfield","Litchfield National Park, Litchfield Park Road, Litchfield Park NT 0822, Australia","NT",80.73,63007.0617
+"319","Palmerston","Palmerston City NT 0830, Australia","NT",20.87,62221.4681
+"320","Alice Springs","Alice Springs NT 0870, Australia","NT",1010.77,57799.1564
+"321","Barkly","Barkly, NT, Australia","NT",NA,51569.0867
+"322","Daly - Tiwi - West Arnhem","","NT",NA,49919.7865
+"323","East Arnhem","East Arnhem NT 0822, Australia","NT",1765.9,71089.5254
+"324","Katherine","Katherine NT 0850, Australia","NT",197.23,56443.3379
+"325","Belconnen","Belconnen, ACT, Australia","ACT",17.58,64247.9425
+"326","Canberra East","Canberra ACT 2601, Australia","ACT",0,59305.6214
+"327","Gungahlin","Gungahlin, ACT, Australia","ACT",23.18,68146.8971
+"328","North Canberra","Canberra ACT, Australia","ACT",10.13,70536.039
+"329","South Canberra","Canberra ACT, Australia","ACT",10.13,99187.8874
+"330","Tuggeranong","Tuggeranong, ACT, Australia","ACT",22.62,66006.6009
+"331","Weston Creek","Weston Creek, Canberra ACT 2611, Australia","ACT",16.08,70712.3512
+"332","Woden Valley","Woden Valley, ACT, Australia","ACT",14.6,76894.4372
+"333","Urriarra - Namadgi","","ACT",NA,63234.7053
