@@ -110,25 +110,32 @@
    data <- read_excel("1_original_data/6524055002do0007_201115.xls",
                 sheet = 4,               # what is this doing?
                 range = "A7:G365",       # what is this doing? 
-                na = "na") %>%           # "pipe all the things I just did into the next thing"
-           rename(sa3 = "SA3",                
-                  name = "SA3 NAME",          
+                na    = "na") %>%           # "pipe all the things I just did into the next thing"
+     
+           rename(sa3     = "SA3",                
+                  name    = "SA3 NAME",          
                   earners = "persons",
-                  age = "years",
+                  age     = "years",
                   tot_income = "$..5",
                   med_income = "$..6",
-                  av_income = "$..7") %>% 
+                  av_income  = "$..7") %>% 
+     
           select(-av_income) %>% 
+     
           drop_na(.) %>% 
+     
           mutate(av_income = tot_income/earners,
                  sa3 = sa3,
                  sa3_1 = floor(sa3/10000))
     
     
+   
     # Done! We've imported the right part of the Excel sheet, kept and renamed the 
     # variables we want (and dropped the ones we didn't), and made a new variable
     # for average income (av_income). Let's see if it worked:
     
+    # Are the objects 'data' and 'data5' identical? 
+    identical(data, data5)
     
     ##Examining our data
         View(data)  #Look at it
@@ -150,16 +157,38 @@
         # And looking at an ugly (but still informative!) histogram
         hist(data$av_income)
         
-        # Let's look at a ~better~ histogram using ggplot
+        ## Using ggplot
+        # Pipe our data into a plot:
+        data %>% ggplot()
+        
+        # Our empty plot will appear in the window over there -> 
+        # But, it's just an empty plot. We need to layer in some aesthetics
+        data %>% ggplot(aes(x = av_income))
+        
+        # Now it knows that our x-axis aesthetic is av_income
+        # We can then layer in a 'geom':
         data %>% 
-        ggplot(aes(av_income)) +
-            geom_histogram(fill=gorange, color="white") +
-            theme_minimal()
+          ggplot(aes(x = av_income)) +
+          geom_histogram()
+        
+        # And change the colour:
+        data %>% 
+          ggplot(aes(x = av_income)) +
+          geom_histogram(fill = gorange)
+        
+        # We can layer another geom on top of that, too:
+        data %>% 
+          ggplot(aes(x = av_income)) +
+          geom_histogram(fill = gorange) +
+          geom_histogram(fill = gdark, alpha = 0.5, bins = 90) +
+          geom_hline(yintercept = 0) +
+          geom_vline(xintercept = 45000, linetype = "dashed", colour = "white")
+        
     
         
-        # Let's look at a density plot; one for MED.INCOME, and one for av_income
+        # Let's look at a density plot; one for med_income, and one for av_income
         ggplot(data) +
-          geom_density(aes(med.income), 
+          geom_density(aes(med_income), 
                        fill = gorange, color="black", alpha = 0.7) +
           geom_density(aes(av_income), 
                        fill = gdark, color="black", alpha = 0.7) +
@@ -308,6 +337,16 @@
     write_csv(final_data, file = "final_data.csv")
     
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     #--------------------------------------------------------------------------------------#
     #####  Additional activities #####
