@@ -1,0 +1,147 @@
+---
+title: "A brief introduction to the Tidyverse in R"
+author: "Will Mackey"
+date: "15/01/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Welcome to `R`. The following analysis is done in `R`, and this document (along with the analysis) is written in `R` using `RMarkdown`. 
+
+If you are new to coding: this can all be intimidating. There are lots of little-and-large rules to obey; there is little room for error; and you probably don't know where to start. You are sure to make plenty of errors and get frustrated. The ratio of _things-you-can-get-done_ to _this-is-damn-frustrating_ increases substantially from when you begin; but it never reaches infinity. 
+
+So why should we bother? The immediate benefit is reproduceability. When you are writing a script ---a list of instructions for your computer to follow ---there is a clear record of what has been done. The same _cannot_ be said for analysis in Excel: you may decide to delete a row (`right click + delete`) and the row will be gone; but there is no record of the row being deleted. In a month's time, you may forget that you have deleted the row. In six month's time you surely will. It would simply be gone. If I or anyone else were looking at your Excel spreadsheet, I wouldn't know the row even existed!
+
+There are other substantial benefits to using a script-based program for your data analysis. You can handle bigger data; analyse with more precision and creativity; produce clear, wonderful graphics; and---eventually---do so quicker than you could in Excel.
+
+The benefits of using this program, `R`, is that...
+
+
+
+
+# (_Quick_) boring basics
+
+## A script-based program
+
+In a script-based program you write a list of instructions---the script, the code---and the computer will follow the instructions. In the following, a `grey background like this` denotes bits of code. 
+
+The 'code chunk' below is an example of some code in `R`. It does one thing: multiply 2 by 7. It then will show you the 'output' preceded by a `##` and a number to indicate the line of the output, `[1]`.  
+
+```{r first}
+2 * 7
+```
+
+## Comments
+
+It is useful to annotate our code while we're writing it. Sometimes this is to explain _what_ the code is doing: `# Multiply 2 by 7`. More imporantly, comments are used to explain _why_ we are doing what we're doing: `# Show that 14 is divisible by 2`. We denote a comment with the prefix `#`. Anything on a line after `#` will be ignored by `R`. With that handy comment, our code looks like this: 
+
+```{r second}
+# Show that 14 is divisible by 2
+2 * 7
+```
+
+## Defining and working with objects
+
+Our result---`14`---will be printed on the screen. But we might want to use it later. We can store it as an object using `<-`, which means _assign_ the RHS as an object called LHS. In this case, we are assigning `2 * 7` as the object `div_by_2`.
+
+```{r object}
+# Show that 14 is divisible by 2 by storing it... 
+div_by_2 <- 2 * 7
+
+# ...and displaying it.
+div_by_2
+```
+
+We can then use `div_by_2` as if it were the number `14`:
+
+```{r object2}
+the_divisor <- 2
+
+div_by_2 / the_divisor
+```
+
+
+So far, we have just been working with elements---a single _thing_. We can extend this to **vectors**, too, using the combine function. `c` will take the arguments within it and combine them to a vector: 
+
+```{r vector}
+vector_of_numbers <- c(14, 15, 16, 17)
+```
+
+Then we can perform the same actions on the `vector_of_numbers` as we did on the element:
+
+```{r vector2}
+# See if any elements of the vector over the_divisor result in non-zero decimals
+vector_of_numbers / the_divisor
+```
+
+## Boolean statements: `TRUE` or `FALSE`?
+
+We can provide `R` with a statement and it will tell us if it is `TRUE` or `FALSE`. Below we run three statments by it, using `==` to say "**is** equal to".
+
+```{r boolean}
+2 + 2 == 5
+"apples" == "oranges"
+2 * 7 == 14
+```
+
+We can make these a little more complicated by adding "and" symbols `&`, "or" symbols `|` (`shift+backslash`), and "**is not** equal to" symbols `!=`.  
+
+```{r boolean2}
+# Are both (TRUE) and (TRUE)
+(10 == 10) & (20 == 10)
+# Are either (TRUE) or (TRUE)
+(10 == 10) | (20 == 10)
+# Are both (TRUE) and (not TRUE)
+(10 == 10) & (20 != 10)
+# Are both ((TRUE) and are either (TRUE or TRUE))
+(10 == 10) & (20 == 10 | 5 == 5)
+```
+
+Easy!
+
+
+Using these boolean statements, we can check if our `vector_of_numbers` are all divisible by 2. The RHS of the statment gets the number divided by 2. The LHS gets the number divided by 2 _and rounds it to zero decimal places_: 
+
+```{r boolean3}
+# Are the numbers in vector_of_numbers divisible by 2?
+vector_of_numbers / 2 == round(vector_of_numbers / 2, 0)
+
+```
+
+## Functions
+
+Wait a minute---what was that `round()` function that was used but not explained? Good eye! `round()` is a function that comes 'shipped' with `R`. It takes two **arguments**: `round(x, digits)`. If `x = 4.102` and `digits = 1`, `round(4.102, 1)` would return `4.1` (ie 4.102 rounded to 1 decimal place). 
+
+There are _many_ functions in `R`. Some---like `round()`---are pre-installed, much like in Excel. They work out-of-the-box. 
+
+But---unlike Excel---there are many other functions that are written by the community. They can be quite sophisticated! A collection of functions is called a 'package' and you will have to install these yourself using `install.packages("name_of_package")`. For working with data we will use the functions of the `tidyverse` packages. You can install this by running:
+
+```{r install_tidyverse, eval= FALSE}
+install.packages("tidyverse")
+```
+
+Note that installing a package only needs to be done once (think of installing an application on your computer.) But the package needs to be 'loaded' any time you restart `R` (like opening the appication on your computer). This is done by:
+
+```{r install_tidyverse, eval= FALSE}
+load(tidyverse)
+```
+
+
+# Far more interesting: working with data
+
+With absolute basics out of the way, we can look to working with _real_ data using the `tidyverse` package.
+
+
+
+
+
+
+
+
+
+
+
