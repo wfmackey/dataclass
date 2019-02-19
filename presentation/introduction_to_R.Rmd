@@ -1,0 +1,254 @@
+---
+title: "introduction_to_R"
+author: "Will Mackey"
+date: "19/02/2019"
+output: 
+  html_document:
+    theme: united
+    highlight: tango
+    code_folding: show
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Preamble
+
+## Why we are doing this
+
+### A script-based language
+
+R is a script-based language. You write down a list of instructions and it will follow, performing one action after another. This is different to 'point and click' software like Microsoft Excel, and it can feel a bit cumbersome.
+
+In Excel, you can perform a series of steps:
+
+* Open a file.
+* Delete column that you don't need.
+* Add a new column that contains a function.
+* 'Fill' that function down to the end of the dataset.
+* Select all of your data and sort from highest to lowest.
+* Delete all the rows that have missing values.
+* Save your file.
+
+
+
+R is free, open-source and powerful. In the past five years, it has also become easier to use and get started with. 
+
+...
+
+## Getting started in R
+
+### R _Projects_
+
+### R Studio layout
+
+(screen grabs)
+
+### Functions
+
+
+
+### Installing and loading packages
+
+Installing a package is like installing an app on your phone. It....
+
+You can install a package using the `install.packages` function. Note that there will be lots of text that appears o
+
+```{r install tidyverse, eval = FALSE}
+install.packages("tidyverse")
+```
+
+
+Now we need to load it using the `library` function; like opening an app you have installed on your phone. We do this every time (every 'session') we want to use it.
+
+Notice below that we received some messages and warnings when we loaded the 
+
+```{r load tidyverse, collapse=TRUE}
+library(tidyverse)
+```
+
+
+# Part 1: Reading and exploring with visuals
+
+This 
+
+## Read a CSV file into R
+
+This uses the `read_csv` function and, here, we're only going to give it one argument: the path to the csv file you want to read _in quotation marks_. 
+
+**Tip**: open quotation marks and hit `tab` to choose your file (and save you some typing).
+
+```{r read_csv}
+read_csv("data/gapminder.csv")
+```
+
+
+Looks good! But it isn't in our Environment (on the right) yet because we didn't _assign it_ to anything.
+
+##### Show code
+
+```{r read_csv object}
+gapminder <- read_csv("data/gapminder.csv") # the 'assign' operator is <-
+                                            # ie assign read_csv(...) to gapminder
+```
+
+Now it is in our Global Environment over there --->    wooh!
+
+### Peeking at the data
+
+Much like Excel, we can explore the `gapminder` dataset with our eyes.
+
+`View` will open up a new tab that displays your dataset. You can scroll through it.
+
+```{r view, eval = FALSE}
+View(gapminder)
+```
+
+`head` will print just the first few observations. This is handy to check on things as you're going along.
+
+```{r head}
+head(gapminder)
+```
+
+`names` will display the names of all variables in the dataset (and is often the answe to 'what was that variable called again...')
+
+```{r names}
+names(gapminder)
+```
+
+## Visualising the data
+
+```{r}
+## Scatter plot
+gapminder %>% 
+  ggplot(aes(x = lifeExp,
+             y = gdpPercap)) +
+  geom_point()
+```
+
+## Exploring further with `plotly`
+
+```{r, message=FALSE}
+library(plotly)
+```
+
+```{r, highlight=TRUE}
+p <- gapminder %>% 
+  ggplot(aes(x = lifeExp,
+             y = gdpPercap,
+             label = country)) +
+  geom_point()
+
+
+ggplotly(p)
+```
+
+## Look at the gapminder dataset. 
+Now close your eyes and picture the gapminder dataset:
+* Add a new column to the right with the name 'my_column'. 
+* Only keep rows from 2007
+* Then remove the 'year' column
+
+
+# Putting it all together with pipes %>% 
+
+
+```{r}
+gapminder07 <- gapminder %>%         # Assign gapminder07 to: the gapminder dataset, then
+  
+  mutate(gdp = gdpPercap * pop) %>%  # create a new column called gdp, then
+  
+  filter(year == 2007) %>%           # keep only observations from 2007, then
+  
+  select(-gdpPercap)                 # drop the gdpPercap variable (negative select)
+
+```
+
+## Changing the look of our plots
+
+We want to make our plots as clear as possible...
+
+
+```{r}
+
+library(scales)
+# with a log scale
+gapminder07 %>% 
+  ggplot(aes(x = lifeExp,
+             y = gdp)) +
+  geom_point() +
+  scale_y_log10(label = comma)
+
+
+# with colour
+gapminder07 %>% 
+  ggplot(aes(x = lifeExp,
+             y = gdp,
+             colour = continent)) +
+  geom_point() +
+  geom_line(aes(group = country)) +
+  scale_y_log10(label = comma)
+
+
+# with colour and facet
+gapminder07 %>% 
+  ggplot(aes(x = lifeExp,
+             y = gdp,
+             colour = continent)) +
+  geom_point() +
+  geom_line(aes(group = country)) +
+  scale_y_log10(label = comma)+ 
+  facet_wrap(~ continent)
+
+
+# with colour and facet
+gapminder07 %>% 
+  mutate(decade = signif(year, 3)) %>% 
+  ggplot(aes(x = lifeExp,
+             y = gdp,
+             colour = continent,
+             size = pop)) +
+  geom_point() +
+  geom_line(aes(group = country)) +
+  scale_y_log10(label = comma)+ 
+  facet_grid(decade ~ continent)
+
+
+# with colour
+gapminder07 %>% 
+  ggplot(aes(x = lifeExp,
+             y = gdp,
+             colour = continent)) +
+  geom_point(alpha = 0.5) +
+  geom_line(aes(group = country)) +
+  scale_y_log10() +
+  facet_wrap(~ continent)
+
+```
+
+
+# Part 2: 
+
+# Joining datasets together
+
+
+
+# bin
+
+## R Markdown
+
+```{r out.width=c('50%', '50%'), fig.show='hold', eval = FALSE}
+boxplot(1:10)
+plot(rnorm(10))
+```
+
+## Maths
+
+At some point throughout your university life you will need to write equations in a document.
+<br><br><br><br>
+$A = (\pi * \lambda \times r^{4}) / \alpha $
+

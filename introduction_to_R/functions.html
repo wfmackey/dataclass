@@ -1588,11 +1588,74 @@ great_fun(x = 63, y = 12)</code></pre>
 
 get_total</code></pre>
 <pre><code>## [1] 75</code></pre>
-<p>And this trait can be useful! We can do lots of messy things <em>behind the scenes</em> in our function and only return the juicy relevant bit. We’ll use this trait when working with wild data in the next sections.</p>
+<p>And this trait can be useful! We can do lots of messy things <em>behind the scenes</em> in our function and only return the juicy relevant bit. We’ll use this trait when working with wild data in the coming sections.</p>
+</div>
+<div id="a-classic-function" class="section level2">
+<h2>A classic function</h2>
+<p>One of the classic define-your-own functions is changing the <code>mean</code> function to default to excluding <code>NA</code> values (which is very useful!). Using the same function structure as above, we define a function object like below (noting that if a function is on a single line we don’t need to use braces).</p>
+<pre class="r"><code>nums &lt;- c(10, NA, 20, 30)
+
+mean_rm &lt;- function(x) mean(x, na.rm = TRUE)
+
+mean(nums)</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>mean_rm(nums)</code></pre>
+<pre><code>## [1] 20</code></pre>
+<p>Now there’s a useful function!</p>
 </div>
 </div>
-<div id="using-functions-within-the-tidyverse" class="section level1">
-<h1>Using functions within the <code>tidyverse</code></h1>
+<div id="using-functions-with-wild-data-and-the-tidyverse" class="section level1">
+<h1>Using functions with wild data and the <code>tidyverse</code></h1>
+<p>Let’s load the <code>vet_participation.csv</code> file and summarise (see Introduction section for explanations on what is happening here).</p>
+<pre class="r"><code>vet_participation &lt;- read_csv(&quot;data/vet_participation.csv&quot;,
+                              skip = 10)  %&gt;% 
+                     filter(!is.na(X6)) %&gt;% 
+                     na.locf() %&gt;% 
+                     rename(n = X6)</code></pre>
+<p>This data is from the 2016 Census, and we can see that the names that have been used:</p>
+<pre class="r"><code>names(vet_participation)</code></pre>
+<pre><code>## [1] &quot;AGE5P - Age in Five Year Groups&quot;               
+## [2] &quot;SEXP Sex&quot;                                      
+## [3] &quot;TYPP Type of Educational Institution Attending&quot;
+## [4] &quot;IRSAD Deciles at SA1 Level (Area)&quot;             
+## [5] &quot;RA (UR)&quot;                                       
+## [6] &quot;n&quot;</code></pre>
+<p>We’ll usually want to clean the names up a bit to remove spaces and make things neater. One way to do this would be to use <code>dplyr</code>’s <code>rename</code> function:</p>
+<pre class="r"><code>vet_participation &lt;- vet_participation %&gt;% 
+                     rename(age = &quot;AGE5P - Age in Five Year Groups&quot;,
+                            sex = &quot;SEXP Sex&quot;,
+                            inst = &quot;TYPP Type of Educational Institution Attending&quot;,
+                            irsad = &quot;IRSAD Deciles at SA1 Level (Area)&quot;,
+                            ra = &quot;RA (UR)&quot;)
+
+names(vet_participation)</code></pre>
+<p>That works. Great. But, we might need to do this a number of times for each dataset we read. For example, if we’re reading in a dataset that contains the variables <code>&quot;AGE5P - Age in Five Year Groups&quot;</code> and <code>&quot;SEXP Sex&quot;</code>, and another that contains those two and <code>&quot;TYPP Type of Educational Institution Attending&quot;</code>, we would need to repeat ourselves: <code>...rename(age = &quot;AGE5P - Age in Five Year Groups&quot;)</code> for one dataset, and <code>...rename(age = &quot;AGE5P - Age in Five Year Groups&quot;)</code> again for the next.</p>
+<p>Maybe we could create a <code>rename_abs</code> function that does this for us. Recall that <code>names(dataset)</code> returns a string vector of the variable names used for <code>dataset</code>. We can edit that string vector directly:</p>
+<pre class="r"><code>test_vet_participation &lt;- vet_participation
+names(test_vet_participation) &lt;- c(&quot;name1&quot;, &quot;name2&quot;, &quot;name3&quot;, &quot;name4&quot;, &quot;name5&quot;)
+
+head(test_vet_participation)</code></pre>
+<pre><code>## # A tibble: 6 x 6
+##   name1     name2 name3     name4   name5                                NA
+##   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;                             &lt;dbl&gt;
+## 1 0-4 years Male  Preschool Decile… Major Cities of Australia (NSW)    2371
+## 2 0-4 years Male  Preschool Decile… Inner Regional Australia (NSW)     1463
+## 3 0-4 years Male  Preschool Decile… Outer Regional Australia (NSW)      669
+## 4 0-4 years Male  Preschool Decile… Remote Australia (NSW)               60
+## 5 0-4 years Male  Preschool Decile… Very Remote Australia (NSW)          24
+## 6 0-4 years Male  Preschool Decile… Migratory - Offshore - Shipping …     0</code></pre>
+<pre class="r"><code>names(vet_participation) %&gt;%
+  tibble(old_name = .) %&gt;% 
+  mutate(new_name = case_when(
+           old_name == &quot;AGE5P - Age in Five Year Groups&quot; ~ &quot;age&quot;,
+           old_name == &quot;SEXP Sex&quot; ~ &quot;sex&quot;,
+           old_name == &quot;TYPP Type of Educational Institution Attending&quot; ~ &quot;inst&quot;,
+           old_name == &quot;IRSAD Deciles at SA1 Level (Area)&quot; ~ &quot;irsad&quot;,
+           old_name == &quot;RA (UR)&quot; ~ &quot;ra&quot;
+  )) %&gt;% 
+  pull(new_name) %&gt;%   # note that this will necessarily be in the right order
+  unique()</code></pre>
+<pre><code>## [1] &quot;age&quot;   &quot;sex&quot;   &quot;inst&quot;  &quot;irsad&quot; &quot;ra&quot;    NA</code></pre>
 </div>
 
 
