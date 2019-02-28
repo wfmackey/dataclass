@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 This document was created in `R` using `Rmarkdown`. `Rmarkdown` allows for headers, text, lists, etc, alongside analysis and presentation data. It can then be output to `html` or `pdf`. It's neat!
 
-In this document, text, like this, looks like this. 
+In this document, text---like this!---looks like this.
 
 **Code chunks** that you can copy-and-paste into your script is in a box with a light-grey background. 
 

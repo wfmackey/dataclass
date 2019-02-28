@@ -1,0 +1,243 @@
+---
+title: "Introduction to R"
+author: "For analysis of Australian higher education data"
+date: "15/01/2019"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    rmarkdown::html_document:
+    theme: journal
+    fig_caption: true
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(tidyverse)
+library(zoo)
+```
+
+# User-defined functions
+
+We know what a fucntion is. It takes an input, does something, and returns an output. A nice-and-simple function in base `R` is `mean()`, which returns the mean of a vector of numbers (which we define beforehand as `nums`).
+
+```{r mean}
+nums <- c(1, 2, 3, 4, 5)
+
+mean(nums)
+
+```
+
+The output returned was `r mean(nums)`. Nice!
+
+There are many functions in base `R`, and _many_, _many_ more in available packages. But there will always be times where can simplify or enhance our code by using a function we write ourselves.
+
+more on this...
+
+
+A function is defined as an object in our global environment using the assign `<-` operator. We say "I want to assign this as a function":
+
+```{r great_fun1}
+great_fun <- function(x) {
+  print(x)
+}
+```
+
+Our function `great_fun` is a `function` that takes one argument, `x`. It then takes `x` and prints it to the screen. Simple!
+
+```{r}
+great_fun(x = 63)
+```
+
+We can set up our function to take as many arguments as we want:
+
+```{r}
+great_fun <- function(x, 
+                      y) {
+  print(x)
+  print(y)
+}
+```
+
+Now, `great_fun` will take `x` and `y`, print `x`, then print `y` to the screen:
+
+```{r}
+great_fun(x = 63, 
+          y = 12)
+```
+
+_Thanks,_ `great_fun`! We can also set defaults for arguments, meaning we set the value the argument will take unless the user says otherwise:
+
+```{r}
+great_fun <- function(x, 
+                      y = "Okay fine just print this default y value second") {
+  print(x)
+  print(y)
+  
+}
+
+great_fun(x = 63)
+great_fun(x = 63, y = 12)
+
+```
+
+## Function ouput
+
+**Great!** We know how to build functions. Next, we should look at the _outputs_ of functions. Everything that happens within a function _stays within a function_ unless you tell it otherwise. In the previous examples we explicitly told `R` to `print(x)`. But look what happens when we do something in the background:
+
+```{r, error = TRUE}
+great_fun <- function(x, 
+                      y) {
+  
+  get_total <- x + y
+  
+}
+
+great_fun(x = 63, y = 12)
+
+get_total
+
+```
+
+It assigns `x + y` to the object `get_total`, but keeps all of this information within the function. It doesn't leave! There are two ways we can easily pull it out. The first is to explicitly `assign` the object to the `.GlobalEnv` (global environment):
+
+```{r}
+great_fun <- function(x, 
+                      y) {
+  
+  assign("get_total", x + y, envir = .GlobalEnv)
+  
+}
+
+great_fun(x = 63, y = 12)
+
+get_total
+
+```
+
+There it is! We assigned `get_total` to the global environment, successfully freeing it from the function innards.
+
+We can do this another way. When a function finishes, it will retain the last thing it did. And we can assign whatever-that-is normally by using `<-`:
+
+```{r}
+great_fun <- function(x, 
+                      y) {
+  x + y
+}
+
+get_total <- great_fun(x = 63, y = 12)
+
+get_total
+
+```
+
+If we did other things before, they'd be ignored -- only the last _thing_ in the function is transferred:
+
+```{r}
+great_fun <- function(x, 
+                      y) {
+  
+  "Hello! This text will be ignored :("
+  x * y
+  (x + 100) + (y - 100)
+  
+  x + y
+  
+}
+
+great_fun(x = 63, y = 12)
+
+get_total <- great_fun(x = 63, y = 12)
+
+get_total
+
+```
+
+And this trait can be useful! We can do lots of messy things _behind the scenes_ in our function and only return the juicy relevant bit. We'll use this trait when working with wild data in the coming sections.
+
+
+## A classic function
+
+One of the classic define-your-own functions is changing the `mean` function to default to excluding `NA` values (which is very useful!). Using the same function structure as above, we define a function object like below (noting that if a function is on a single line we don't need to use braces).
+
+```{r}
+nums <- c(10, NA, 20, 30)
+
+mean_rm <- function(x) mean(x, na.rm = TRUE)
+
+mean(nums)
+
+mean_rm(nums)
+```
+
+
+Now there's a useful function!
+
+
+
+# Using functions with wild data and the `tidyverse`
+
+Let's load the `vet_participation.csv` file and summarise (see Introduction section for explanations on what is happening here).
+
+```{r load vet_participation}
+
+vet_participation <- read_csv("data/vet_participation.csv",
+                              skip = 10)  %>% 
+                     filter(!is.na(X6)) %>% 
+                     na.locf() %>% 
+                     rename(n = X6)
+```                     
+
+
+This data is from the 2016 Census, and we can see that the names that have been used:
+
+```{r see names}
+names(vet_participation)
+```
+
+We'll usually want to clean the names up a bit to remove spaces and make things neater. One way to do this would be to use `dplyr`'s `rename` function:
+
+```{r rename, eval = FALSE}
+vet_participation <- vet_participation %>% 
+                     rename(age = "AGE5P - Age in Five Year Groups",
+                            sex = "SEXP Sex",
+                            inst = "TYPP Type of Educational Institution Attending",
+                            irsad = "IRSAD Deciles at SA1 Level (Area)",
+                            ra = "RA (UR)")
+
+names(vet_participation)
+
+```
+
+That works. Great. But, we might need to do this a number of times for each dataset we read. For example, if we're reading in a dataset that contains the variables `"AGE5P - Age in Five Year Groups"` and `"SEXP Sex"`, and another that contains those two and `"TYPP Type of Educational Institution Attending"`, we would need to repeat ourselves: `...rename(age = "AGE5P - Age in Five Year Groups")` for one dataset, and `...rename(age = "AGE5P - Age in Five Year Groups")` again for the next. 
+
+Maybe we could create a `rename_abs` function that does this for us. Recall that `names(dataset)` returns a string vector of the variable names used for `dataset`. We can edit that string vector directly:
+
+
+```{r}
+test_vet_participation <- vet_participation
+names(test_vet_participation) <- c("name1", "name2", "name3", "name4", "name5")
+
+head(test_vet_participation)
+
+```
+
+```{r}
+names(vet_participation) %>%
+  tibble(old_name = .) %>% 
+  mutate(new_name = case_when(
+           old_name == "AGE5P - Age in Five Year Groups" ~ "age",
+           old_name == "SEXP Sex" ~ "sex",
+           old_name == "TYPP Type of Educational Institution Attending" ~ "inst",
+           old_name == "IRSAD Deciles at SA1 Level (Area)" ~ "irsad",
+           old_name == "RA (UR)" ~ "ra"
+  )) %>% 
+  pull(new_name) %>%   # note that this will necessarily be in the right order
+  unique()
+  
+```
+
+
+
+
