@@ -1,6 +1,6 @@
 ---
-title: "Introduction to R -- truncated Rmarkdown document"
-author: "For analysis of Australian higher education data"
+title: "Introduction to R"
+author: "For analysis of ABS data"
 date: "15/01/2019"
 output:
   html_document:
@@ -9,7 +9,6 @@ output:
     rmarkdown::html_document:
     theme: journal
     fig_caption: true
-  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -21,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 This document was created in `R` using `Rmarkdown`. `Rmarkdown` allows for headers, text, lists, etc, alongside analysis and presentation data. It can then be output to `html` or `pdf`. It's neat!
 
-In this document, text, like this, looks like this. 
+In this document, text---like this!---looks like this.
 
 **Code chunks** that you can copy-and-paste into your script is in a box with a light-grey background. 
 
@@ -50,10 +49,10 @@ A quick guide to setting up a project:
 
 * Create a folder called `vet_participation`.
 * In that folder, create subfolders called:
-    - `data/`
-    - `atlas/`
-    - `output/`
-* Open `R Studio` and create a new project `File/New project...`, and save it in your folder.
+    - `data` to store your data;
+    - `atlas` to store your graphics; and
+    - `output` to store your other output (regression results, etc).
+* Open `R Studio` and create a new project `File/New project...` -> `Existing directory` -> (find your new folder) -> `Create project`. 
 
 When you open `vet_participation.Rproj`, your working directory will be set to the `vet_participation` folder on your computer. _Importantly_, when someone else opens `vet_participation.Rproj` it will set the working directory to the `vet_participation` folder on _their_ computer. This means analysis done on one computer will work one someone else's with minimal switching costs.
 
@@ -75,11 +74,6 @@ We then load packages each time we start a new `R` session with `library(thePack
 ```{r load packages}
 library(tidyverse)
 library(zoo)
-```
-
-```{r hidden cruft, include = FALSE}
-theme_set(theme_minimal())
-options(scipen=1000000)
 ```
 
 
@@ -199,7 +193,9 @@ Writing out the unique values can be tedious, so we can just refer to elements o
 (other_na <- institution_unique[10:12])
 ```
 
-With our groups defined, we can create a VET dummy variable in the `vet_participation` dataset using `mutate`. We will employ the function `%in%` which means 'is contained within' and returns a logical. In this example: for each row, if the `institution` variable is contained within the `vet` vector we defined before, the `is_vet` variable will be `TRUE`; otherwise it will be `FALSE`.
+With our groups defined, we can create a VET dummy variable in the `vet_participation` dataset using `mutate`. Note that `mutate` creates or replaces/updates a variable, so `...mutate(income = income * 2)` will 'update' the income variable to be double. 
+
+We will also employ the function `%in%` which means 'is contained within' and returns a logical. In this example: for each row, if the `institution` variable is contained within the `vet` vector we defined before, the `is_vet` variable will be `TRUE`; otherwise it will be `FALSE`.
 
 ```{r mutate}
 
@@ -336,7 +332,18 @@ inst_young_sum %>%
   geom_bar(stat = "identity")
 ```
 
-That has reordered things, but the label is a bit silly. We can adjust the labels:
+That has reordered things. The scientific notation is a bit annoying, and we don't like the grey background. We can change the default settings:
+
+```{r cruft}
+# Setting the theme
+theme_set(theme_minimal())
+
+# Setting the limit for scientific notation
+options(scipen = 1000000)
+```
+
+
+Now, we can adjust the labels of the chart with `labs`:
 
 ```{r ggplot labs}
 inst_young_sum %>% 
@@ -419,6 +426,197 @@ inst_young_sum %>%
 ```
 
 
+
 # Recreating charts
 
-(See the full _Introduction to R_ `html` or `pdf` document).
+Now that you know _everything_ there is to know about `R` and the `tidyverse`, you will be able to recreate the following charts.
+
+## Recreate 1
+
+Create this dataset, where `n` is the total number of people in each group.
+
+```{r recreate1, echo = FALSE}
+
+by_sex <-
+vet_participation %>% 
+        filter(age == "15-19 years" | age == "20-24 years") %>% 
+        group_by(sex, age, inst_group) %>% 
+        summarise(n = sum(n))
+
+by_sex
+
+```
+
+## Recreate 2
+
+Recreate the following charts (and feel free to improve on them if you'd like!).
+
+### A
+```{r recreate2a, echo = FALSE}
+
+by_sex %>% 
+  ggplot(aes(x = sex,
+         y = n,
+         fill = inst_group)) +
+  geom_bar(stat = "identity")
+
+```
+
+
+### B
+Keyword: `"dodge"`
+
+```{r recreate2b, echo = FALSE}
+
+by_sex %>% 
+  group_by(sex, inst_group) %>% 
+  summarise(n = sum(n)) %>% 
+  ggplot(aes(x = sex,
+         y = n,
+         fill = inst_group)) +
+  geom_bar(stat = "identity",
+           position = "dodge") +
+  labs(y = "Number of 15-24 year-olds",
+       x = "",
+       fill = "Institution")
+
+```
+
+### C
+
+Keyword: `facet`
+
+```{r recreate2c, echo = FALSE}
+
+by_sex %>% 
+  ggplot(aes(x = sex,
+         y = n,
+         fill = inst_group)) +
+  geom_bar(stat = "identity",
+           position = "dodge") +
+  facet_grid(. ~ age)
+
+```
+
+
+### D
+
+```{r recreate2d, echo = FALSE}
+
+by_sex %>% 
+  filter(inst_group != "other") %>% 
+  ggplot(aes(x = sex,
+         y = n,
+         fill = inst_group)) +
+  geom_bar(stat = "identity",
+           position = "dodge") +
+  facet_grid(. ~ age)
+
+```
+
+
+### E
+
+```{r recreate2e, echo = FALSE}
+
+by_sex %>% 
+  filter(inst_group != "other") %>% 
+  ggplot(aes(x = age,
+         y = n,
+         fill = inst_group)) +
+  geom_bar(stat = "identity",
+           position = "dodge") +
+  facet_grid(. ~ sex)
+
+```
+
+
+## Recreate 3
+
+### A
+Create this dataset:
+
+Keywords: `factor`, `parse_number`
+(Note: regular expression can be used here if you're familiar!)
+
+```{r recreate3a, echo = FALSE}
+
+by_irsad <-
+vet_participation %>% 
+        filter(age == "15-19 years" | age == "20-24 years",
+               inst_group == "vet" | inst_group == "university") %>% 
+        mutate(irsad_dec_num = parse_number(irsad_dec)) %>% 
+        group_by(irsad_dec_num, sex, age, inst_group) %>% 
+        summarise(n = sum(n))
+
+by_irsad
+
+```
+
+### B
+
+Keyword: `"fill"`
+
+```{r recreate3b, echo = FALSE}
+by_irsad %>% 
+  filter(age == "20-24 years",
+         !is.na(irsad_dec_num)) %>% 
+  ggplot(aes(x = sex,
+             y = n,
+             fill = inst_group)) +
+  geom_bar(stat = "identity", position = "fill") +
+  facet_grid(. ~ irsad_dec_num) +
+  theme(axis.text.x = element_text(angle = 90)) +
+  labs(subtitle = "VET/University split for 20-24 year-olds, by IRSAD SES decile",
+       caption = "",
+       fill = "Studying at:",
+       y = "Proportion of group",
+       x = "")
+
+
+
+```
+
+### C
+
+Keyword: `alpha`
+
+```{r recreate3c, echo = FALSE}
+by_irsad %>% 
+  ggplot(aes(x = age,
+             y = n,
+             fill = sex,
+             alpha = age)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_grid(inst_group ~ irsad_dec_num,
+             scales = "free") +
+  scale_alpha_discrete(range = c(.4, 1)) +
+  theme(axis.text.x = element_text(angle = 90)) +
+  labs(subtitle = "Number young people by study type and IRSAD SES decile",
+       caption = "")
+  
+```
+
+
+<!--
+
+# Functions
+
+```{r functions}
+getUnique <- function(x) vet_participation %>% select(!!x) %>% unique()
+
+getUnique("age")
+
+```
+
+
+
+-->
+
+
+
+
+
+
+
+
