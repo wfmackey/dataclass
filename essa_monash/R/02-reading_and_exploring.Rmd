@@ -10,6 +10,9 @@ The preamble is meant to get you up-and-running in R, which is necessary. But it
 1. Exploring data visually and interactively.
 
 
+
+
+
 ## Read a CSV file into R
 
 This uses the `read_csv` function and, here, we're only going to give it one argument: the path to the csv file you want to read in _quotation marks_. 
@@ -357,7 +360,7 @@ ggplotly(chart_trend)
 ```
 
 
-## Making your plots dance
+## Making your plots dance with animation
 
 We defined a chart---an object uncreatively called `chart`---and, because we're only human, we would like to animate it into a `gif` to see it move over time.^[This is not a key feature of data science (yet), but it _is_ fun.]
 
@@ -401,21 +404,6 @@ anim_save("atlas/gdp_life-exp.gif")
 knitr::include_graphics("../atlas/gdp_life-exp.gif")
 ```
 
-
-
-## Why we should start by visualising our data
-
-From https://psyarxiv.com/hv3rm
-
-```{r, eval = FALSE}
-devtools::install_github("janhove/cannonball") 
-```
-
-```{r}
-library(cannonball) 
-
-corr_data <- plot_r(r = 0.36, n = 50, showdata = T)
-```
 
 
 

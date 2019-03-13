@@ -5,6 +5,41 @@ ________________________________________________
 
 We have produced some nice graphics looking at the relationship between a country's GDP per capita (per person) `gdpPercap`, and that country's life expectancy `lifeExp`. Now we want to look _deeper_.
 
+
+## Looking at summary statistics (and why we need to visualise the data, too)
+
+
+Most data is too 'big' to look at or make sense of individually. We often use summary statistic to get an _understanding_ for the data. You've done this before by taking the mean (average) of a series of numbers; or by looking at how they're correlated.
+
+Below, we'll use a dataset from 
+
+```{r}
+
+library(datasauRus)
+
+ datasaurus_dozen %>% 
+    group_by(dataset) %>% 
+    summarize(
+      mean_x    = mean(x),
+      mean_y    = mean(y),
+      std_dev_x = sd(x),
+      std_dev_y = sd(y),
+      corr_x_y  = cor(x, y)
+    )
+
+  ggplot(datasaurus_dozen, aes(x=x, y=y, colour=dataset))+
+    geom_point()+
+    theme_void()+
+    theme(legend.position = "none")+
+    facet_wrap(~dataset, ncol=3) 
+ 
+```
+
+
+"never trust summary statistics alone; always visualize your data"
+
+[obs not finished]
+
 ## Transforming our data
 
 Recall our `gapminder` dataset:
@@ -12,7 +47,7 @@ Recall our `gapminder` dataset:
 gapminder
 ```
 
-It has rows and columns; observations and variables. Now, close your eyes and picture the gapminder dataset.
+It has rows and columns; observations and variables. Picture the `gapminder` dataset and:
 
 1. Create a new column called `gdp`, which is `gdpPercapita` $\times$ `pop`.
 1. Only keep rows from 2007
@@ -45,6 +80,8 @@ knitr::include_graphics("../atlas/p4.png")
 ```
 
 We'll explore through each of these steps slowly.
+
+
 
 ### 1. Adding a new variable
 
@@ -179,6 +216,8 @@ This reads: _I want to look at each `unique` value (i.e. remove any duplicates) 
 Great! There's only one unique year number in the `gap_gdp07` dataset. Just what we wanted.
 
 
+
+
 ### 3. Removing the year variable
 
 We can choose and drop variables in our dataset using the `select` function. This comes in handy when you're working with large datasets and your poor computer only has so much memory. Since we have already filtered our dataset to only include observations from 2007, we can drop the `year` variable.
@@ -193,6 +232,8 @@ This reads: define `gap_gdp07_noYear` as the `gap_gdp07` dataset and **negativel
 Wonderful! We have done the three things we wanted: we have one dataset that adds the `gdp` variable; the next that only keeps observations from `2007`; and a _final_ one that removes the `year` variable.
 
 But, creating all these obscure datasets is odd. There is a better way.
+
+
 
 
 ## Piping it all together
@@ -284,76 +325,86 @@ map <- read_rds("data/worldmap_data.Rds")
 map <- read_rds("../data/worldmap_data.Rds")
 ```
 
-Now that we have read the `map` object into R, into our environment, we can look at it a little closer:
+What, exactly, is this object? We can use the `class` function to ask:
 
 ```{r}
-map
+class(map)
 ```
 
-Hmm. It looks a little strange when we print it! It's an `sf` ('simple features') object, which means it is `tibble` object with a special `geometry` variable. The `geometry` variable contains---surprise!---a bunch of spatial information about each observation. It's a bit difficult to see from the print above, but the `geometry` column contains a series of lines that make up the border of each country: one small straight line that connects to another small straight line that connects to another small straight line, and so on.
 
-We would like to connect this spatial `map` data to our `gapminder` dataset. We can do this with by taking the original (`left`) dataset `gapminder` and connecting the `map` dataset to it. By using the function: 
+It's an `sf` ('simple features') object **and** a `data.frame` object! This is just like a `tibble` object, but with a special `geometry` variable. The `geometry` variable contains---surprise!---a bunch of spatial information about each observation. The `geometry` column contains a series of lines that make up the border of each country: one small straight line that connects to another small straight line that connects to another small straight line, and so on.
+
+We would like to connect this spatial `map` data to our `gapminder` dataset. We can do this with by taking the original (`left`) dataset `gapminder` and connecting the `map` dataset to it. By using the function `left_join`:
 
 ```{r}
-left_join(gapminder, map, by = "country")
+gapmap <- full_join(gapminder, map, by = "country")
 ```
 
 We are saying:
-* In the first row of `gapminder` look for a match in `by` `country` in the dataset `map`. If you find one, connect all columns in `map`. If not, move on.
-  - Here, it will look for `Afghanistan` in the `map` object and it will find one observation and it will connect it to our dataset.
+
+* In the first row of `gapminder` look for a match in the dataset `map`, `by` `country`. If you find one, connect all columns in `map`. If not, move on.
+  - Here, it will look for `Afghanistan` in the `map` object and it will find one observation and it will connect all those `Afghanistan` `map` variables to our dataset.
 * In the second row of `gapminder` look for a match...(it will do the same thing for each row).
 
+[A more detailed explanation about joining datsets and relational data can be found at https://r4ds.had.co.nz/relational-data.html]
 
 
-
-find a match wherever you can (in this case it will be by `country` name) and 
 
 
 ## Making maps
 
+We have a dataset that contains information about various countries (`gdpPercap`, `lifeExp`, etc). We joined it to a dataset that contains spatial data for those countries in the `geometry` variable. This means we can use `ggplot` like we have been doing before, but this time with a different `geom`: `geom_sf`, which will plot your geometries (ie plot your map). 
 
-## Making animations
+We want to plot GDP per capita (`gdpPercap`) in 2007. So we first filter our data 
 
+```{r, eval = FALSE, include = FALSE}
+library(sf)
 
+gapmap07 <- gapmap %>% filter(year == 2007)
 
-## Using R Markdown
+gapmap_plot <- gapmap07 %>% 
+               ggplot() +
+               geom_sf(aes(geometry = geometry, 
+                           fill = gdpPercap), 
+                       lwd = 0) # sets the line-width to zero
 
-Using an R Markdown document means your analysis and your writing are in one place (this document is all written in R Markdown). 
-
-R Markdown is a type of file that produces documents. It will process your R code and its output, then typeset/produce your file. It uses the same wonderful math language as LaTeX, too.^[A lot of academic work is written in a typesetting language called LaTeX. R Markdown is a bit simpler to get started with and is a solid alternative in most cases.]
-
-To start an R Markdown document, click `File`->`New File`->`R Markdown`. This will set you up and explain a few things:
-
-```{r Rmarkdown, echo=FALSE, fig.cap="", out.width = '100%'}
-knitr::include_graphics("../atlas/rmarkdown.png")
-```
-
-Headers are defined by `#` (for level 1), `##` (for level 2), etc:
-
-```
-# My main header
-
-## A subheader
+gapmap_plot
 ```
 
 
+```{r}
+library(sf)
 
-```{r out.width=c('50%', '50%'), fig.show='hold', eval = FALSE}
-boxplot(1:10)
-plot(rnorm(10))
+gapmap07 <- gapmap %>% filter(year == 2007)
+
+gapmap_plot <- gapmap07 %>% 
+               ggplot() +
+               geom_sf(aes(geometry = geometry, 
+                           fill = gdpPercap), 
+                       lwd = 0) # sets the line-width to zero
+
+gapmap_plot
 ```
 
-## Making web apps
+We can see some issues with our map. We have a _bunch_ of missing data: mainly from eastern Europe and central Afria. We also 
 
-# bin
+```{r}
+all07 <- read_csv("../data/gapall07.csv")
+
+allmap <- left_join(all07, map)
+
+map07 <- 
+allmap %>% 
+  filter(year == 2007) %>% 
+  ggplot() +
+  geom_sf(aes(geometry = geometry, 
+              fill = gdpPercap), 
+          lwd = 0) + # sets the line-width to zero
+  theme(legend.position = "top")
+
+map07
+```
 
 
-## Maths
 
-At some point throughout your university life you will need to write equations in a document.
-<br><br><br><br>
-$A = (\pi * \lambda \times r^{4}) / \alpha $
-
-
-<font size="1"> "Read a `.csv` file from the path `"data/gapminder.csv"` </font> 
 

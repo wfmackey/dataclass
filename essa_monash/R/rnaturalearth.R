@@ -5,11 +5,18 @@ install.packages("rnaturalearthdata")
 library("rnaturalearth")
 library("rnaturalearthdata")
 
-world <- ne_countries(scale = "large", returnclass = "sf") %>% 
+worldl <- ne_countries(scale = "large", returnclass = "sf") %>% 
   select(country = sovereignt,
          geometry)
+
+worlds <- ne_countries(scale = "small", returnclass = "sf") %>% 
+  select(country = sovereignt,
+         geometry)
+
+
+
 ?ne_countries
-write_rds(world, "../data/worldmap_data.Rds")
+write_rds(worlds, "../data/worldmap_data.Rds")
 
 gapminder$country %>% unique()
 world$country %>% unique()
@@ -22,3 +29,13 @@ world %>%
   ggplot() +
   geom_sf() +
   ggplotly()
+
+
+all <- gapminder::gapminder_unfiltered
+
+all07 <-  all %>% filter(year == 2007)
+
+
+
+
+
