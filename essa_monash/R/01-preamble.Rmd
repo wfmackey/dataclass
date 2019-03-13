@@ -163,10 +163,10 @@ From Hadley Wickham's [_R for Data Science:_](https://r4ds.had.co.nz/workflow-pr
 
 > But you should never [use `setwd` to set a working directory] because there’s a better way; a way that also puts you on the path to managing your R work like an expert.
 
-_^ That's you! You're alredy an expert._
+_^ That's you! You're already an expert._
 
 
-#### Using R Projects is a good way to tell your computer where it is**:
+#### Using R Projects is a good way to tell your computer where it is:
 
 The best way to tell your computer _where it is_ is to use R Projects. This is a little file that lives in your project folder with the suffix `.Rproj`. Opening this file opens R and sets your working directory to _where it is_. 
 
@@ -198,6 +198,7 @@ Objects are 'things' that R knows about. They can be simple as a single number, 
 You can tell R about an object using the assign `<-` operator:
 
 ```{r assign}
+# Define 'fave_number' as 12
 fave_number <- 12
 ```
 
@@ -205,12 +206,14 @@ fave_number <- 12
 We have said: take the number `12` and assign it `<-` to the object `fave_number`. R will note this down, put `fave_number` in our environment and we will be able to use it when we want later. Like:
 
 ```{r use object1}
+# Multiply 'fave_number' by 2
 fave_number * 2
 ```
 
 Or:
 
 ```{r use object2}
+# Add 37 to 'fave_number'
 fave_number + 37
 ```
 
@@ -312,7 +315,7 @@ This means you will spend a lot of time **debugging** your code: you think what 
 
 ________________________________________________
 
-# And now we're coders
+# We're coders now
 
 We have installed R and R Studio; installed and loaded packages; and we know about objects and functions. 
 

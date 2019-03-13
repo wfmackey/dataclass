@@ -1,6 +1,6 @@
 ---
 title: "Introduction to R"
-subtitle: "Presented to Monash University"
+subtitle: "Presented to Monash University for ESSA"
 author: "Will Mackey"
 date: "Monday 18 March, 2019"
 output: 

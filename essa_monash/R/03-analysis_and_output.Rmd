@@ -18,11 +18,33 @@ It has rows and columns; observations and variables. Now, close your eyes and pi
 1. Only keep rows from 2007
 1. Then remove the 'year' column.
 
-So: what happened to our dataset?
+So: what happened to our `gapminder` dataset?
 
-1. It got wider by adding a new variable.
-1. It got shorter by removing all the years that weren't `2007`.
-1. And it got thinner by removing a variable.
+```{r dplyr1, echo=FALSE, fig.cap="", out.width = '80%'}
+knitr::include_graphics("../atlas/p.png")
+```
+
+
+1. It got wider by adding a new variable:
+
+```{r dplyr2, echo=FALSE, fig.cap="", out.width = '80%'}
+knitr::include_graphics("../atlas/p2.png")
+```
+
+2. It got shorter by removing all the years that weren't `2007`:
+
+```{r dplyr3, echo=FALSE, fig.cap="", out.width = '80%'}
+knitr::include_graphics("../atlas/p3.png")
+```
+
+
+3. And it got thinner by removing a variable:
+
+```{r dplyr4, echo=FALSE, fig.cap="", out.width = '80%'}
+knitr::include_graphics("../atlas/p4.png")
+```
+
+We'll explore through each of these steps slowly.
 
 ### 1. Adding a new variable
 
@@ -31,14 +53,16 @@ First, we created a new column called `gdp`.
 This uses the function `mutate`, which works like this:
 
 ```{r, eval = FALSE}
+# Add a new variable called 'newvar'
 mutate(mydata, newvar = 10)
 ```
 
-This means: take `mydata` and add a column `newvar`, which is equal to `10` for every observation. 
+This means: take `mydata` and add a column `newvar`, which is `10` for every observation. See how we use **one** equals sign `=` to **define** something. You can read this as: `newvar` IS `10`. _(We'll look at what two equals signs `==` means in the next section)._
 
 Thinking about the `gapminder` dataset, we could say that we wanted---for some reason---to make everyone richer with a `everyone_richer` variable that was the current GDP per capita `gdpPercap` $\times$ `1000`:
 
 ```{r}
+# To the 'gapminder' dataset, add a new variable called `everyone_richer'
 mutate(gapminder, everyone_richer = gdpPercap * 1000)
 ```
 
@@ -48,6 +72,8 @@ But we saw it do an important thing: for each observation, it took _whatever the
 To get to the thing we were _trying_ to do, add a `gdp` variable, we can use the `mutate` function **and** make sure we define it as an object:
 
 ```{r}
+# To the 'gapminder' dataset, add a new variable called `pop'
+# Define this as 'gap_gdp'
 gap_gdp <- mutate(gapminder, gdp = gdpPercap * pop)
 ```
 
@@ -56,12 +82,14 @@ As above, this will take the `gapminder` dataset and add a new variable `gdp` wh
 To make sure this as all worked, we can print the `head` of our dataset:
 
 ```{r}
+# Look at the first few rows of `gap_gdp'
 head(gap_gdp)
 ```
 
 And, like we have done many times before, we can visualise it:
 
 ```{r}
+# Plot 'gap_gdp' and define as 'this_plot'
 this_plot <- ggplot(gap_gdp,
                     aes(x = lifeExp,
                         y = gdp,
@@ -70,6 +98,7 @@ this_plot <- ggplot(gap_gdp,
             geom_point() +
             scale_y_log10()
 
+# Look at 'this_plot'
 this_plot
 ```
 
@@ -78,6 +107,7 @@ Note that here we have defined an object called `this_plot` with our plot, and t
 We could make it easier to explore interactively by again using `ggplotly`:
 
 ```{r}
+# Use ggplotly to look at 'this_plot'
 ggplotly(this_plot) 
 ```
 
@@ -90,14 +120,18 @@ Next, we want to `filter` our dataset to only keep observations from 2007. i.e. 
 ```
 filter(original_data, [CONDITION])
 ```
+#### Conditional statements
+A conditional statement is one for which some things are `TRUE` and some things are `FALSE`. A quick example of conditionals is below. 
 
-A condition is a statement for which some things are `TRUE` and some things are `FALSE`. A quick example of conditionals is below. `10` does NOT equal `20`, so the 'answer' to this is `FALSE`:
+`10` does NOT equal `20`, so the 'answer' to this is `FALSE`:
 
 ```{r conditionals1}
 10 == 20
 ```
 
-But `10` DOES equal `5` $\times$ `2`, so the following is `TRUE`:
+See how we are using **two** equals signs `==` to **declare** something **is equal to**. You can read the above as: `10` IS EQUAL TO `20`. 
+
+But `10` DOES equal `5` $\times$ `2`, so the this is `TRUE`:
 
 ```{r conditionals2}
 10 == 5 * 2
@@ -126,16 +160,23 @@ Anyway: we want to filter our data to only those observations for which the `yea
 gap_gdp07 <- filter(gap_gdp, year == 2007)
 ```
 
-And we can quickly check if that has worked:
+And we can quickly check if that has worked by looking at the `gap_gdp07` dataset, selecting `$` only the `year` variable:
 
-```{r filter vis}
-ggplot(gap_gdp07,
-       aes(x = year,
-           y = gdp)) +
-  geom_point()
+```{r filter vector}
+gap_gdp07$year
 ```
 
-When we plot our new dataset `gap_gdp07` against `gdp` and `year`, we only have observations from 2007 (i.e. `year == 2007`). Great!
+This reads: _Take the `gap_gdp07` dataset and choose `$` the `year` column._
+
+It looks like they're all `2007`---which is exactly what we wanted. We could also wrap the code above in the `unique` function, which removes any duplicates and _only_ shows unique values:
+
+```{r filter unique}
+unique(gap_gdp07$year)
+```
+
+This reads: _I want to look at each `unique` value (i.e. remove any duplicates) of the `year` column `$` of the `gap_gdp07` dataset._
+
+Great! There's only one unique year number in the `gap_gdp07` dataset. Just what we wanted.
 
 
 ### 3. Removing the year variable
@@ -146,8 +187,10 @@ We can choose and drop variables in our dataset using the `select` function. Thi
 gap_gdp07_noYear <- select(gap_gdp07, -year)
 ```
 
+This reads: define `gap_gdp07_noYear` as the `gap_gdp07` dataset and **negatively select** (drop) the `year` variable.
 
-And now wonderful! We have one dataset that excludes..., and another that ..., and _another_ that removes the year variable.
+
+Wonderful! We have done the three things we wanted: we have one dataset that adds the `gdp` variable; the next that only keeps observations from `2007`; and a _final_ one that removes the `year` variable.
 
 But, creating all these obscure datasets is odd. There is a better way.
 
@@ -157,8 +200,8 @@ But, creating all these obscure datasets is odd. There is a better way.
 This `%>%` is a pipe! The pipe is an odd concept and it is _wonderful_. Think of the things we've just done, where our goal was to create a new variable, keep observations from 2007 and drop the year variable:
 
 ```{r, eval = FALSE}
-gap_gdp <- mutate(gapminder, gdp = gdpPercap * pop)
-gap_gdp07 <- filter(gap_gdp, year == 2007)
+gap_gdp          <- mutate(gapminder, gdp = gdpPercap * pop)
+gap_gdp07        <- filter(gap_gdp, year == 2007)
 gap_gdp07_noYear <- select(gap_gdp07, -year)
 ```
 
@@ -167,7 +210,7 @@ We've created a whole bunch of objects that we don't _really_ care about. We can
 A pipe works by taking the thing behind it and making it the first argument in the function after it. So if we were simply adding `5 + 7` and then wanted to take the square root of that number, we could define an object:
 
 ```{r}
-fave_number <- (5 + 7)
+fave_number <- 5 + 7
 ```
 
 And take the square root of that object:
@@ -179,16 +222,16 @@ sqrt(fave_number)
 **OR** we could pipe `%>%` our number into the square root `sqrt` function:
 
 ```{r}
-(5 + 7) %>% sqrt()
+5 + 7 %>% sqrt()
 ```
 
-The pipe `%>%` takes the _things behind it_ and makes them the **first** argument in the next funtion. This is useful! Because we can quickly do all the things we wanted to do in our three-step program in one:
+The pipe `%>%` takes the _things behind it_ and makes them the _first_ argument in the next funtion. This is useful! Because we can do all the things we wanted to do in our three-step program in one:
 
 ```{r pipe all}
-gapminder07 <-  gapminder %>% 
-                mutate(gdp = gdpPercap * pop) %>% 
-                filter(year == 2007) %>% 
-                select(-year)
+gapminder07 <-  gapminder %>% # Take the gapminder dataset...
+                mutate(gdp = gdpPercap * pop) %>%  # and add a new variable 'gdp'...
+                filter(year == 2007) %>% # and filter to keep only observations from 2007
+                select(-year) # and drop the year variable
 ```
 
 Verbally, this says: assign `gapminder07` to the original `gapminder` dataset, but add a column called `gdp`, then filter to only include observations from `2007`, then drop the `year` variable.
@@ -225,6 +268,45 @@ gapminder %>%
 
 
 ## Joining datasets together
+
+We have our `gapminder` dataset that contains information about countries in different years. Now, let's say we have _another_ dataset---`maps`---that contains information about the geometry (i.e. map information) about those countries. We could use _both_ of those datasets together to plot a map of `lifeExp` around the world _if only_ we could join the two datasets together.
+
+We can do this by joining our new `map` dataset with our original `gapminder` dataset using `left_join`^[You can explore the full gamut of joning types here: https://dplyr.tidyverse.org/reference/join.html. A _very handy_ superhero-themed set of examples is here: https://stat545.com/bit001_dplyr-cheatsheet.html]
+
+First, we read the maps dataset into our environment. Note that this time the data format is `Rds`, so we use the `read_rds` function^[This is also from the `readr` package in the `tidyverse`. An `rds` file has the suffix `.Rds` and is made to be read into R. You can find out more about this kind of file here: https://readr.tidyverse.org/reference/read_rds.html]
+
+```{r, eval = FALSE}
+map <- read_rds("data/worldmap_data.Rds")
+```
+
+
+```{r, include = FALSE}
+map <- read_rds("../data/worldmap_data.Rds")
+```
+
+Now that we have read the `map` object into R, into our environment, we can look at it a little closer:
+
+```{r}
+map
+```
+
+Hmm. It looks a little strange when we print it! It's an `sf` ('simple features') object, which means it is `tibble` object with a special `geometry` variable. The `geometry` variable contains---surprise!---a bunch of spatial information about each observation. It's a bit difficult to see from the print above, but the `geometry` column contains a series of lines that make up the border of each country: one small straight line that connects to another small straight line that connects to another small straight line, and so on.
+
+We would like to connect this spatial `map` data to our `gapminder` dataset. We can do this with by taking the original (`left`) dataset `gapminder` and connecting the `map` dataset to it. By using the function: 
+
+```{r}
+left_join(gapminder, map, by = "country")
+```
+
+We are saying:
+* In the first row of `gapminder` look for a match in `by` `country` in the dataset `map`. If you find one, connect all columns in `map`. If not, move on.
+  - Here, it will look for `Afghanistan` in the `map` object and it will find one observation and it will connect it to our dataset.
+* In the second row of `gapminder` look for a match...(it will do the same thing for each row).
+
+
+
+
+find a match wherever you can (in this case it will be by `country` name) and 
 
 
 ## Making maps

@@ -375,11 +375,27 @@ Once the `gganimate` package is installed, we load it using `library` and add a 
 library(gganimate)
 
 chart +
-  transition_time(year) +
-  labs(title = "GDP and life expectancy in {round(frame_time, 0)}")
+transition_time(year) +
+labs(title = "GDP and life expectancy in {round(frame_time, 0)}")
+```
 
+And we can save the animation using `anim_save` (this will save the last animation you created by default).
+
+```{r, eval = FALSE}
 anim_save("atlas/gdp_life-exp.gif")
 ```
+
+<!-- Generate animation seperately when required to speed up build -->
+
+```{r, eval = FALSE, include=FALSE}
+  library(gganimate)
+  an <- 
+  chart +
+  transition_time(year) +
+  labs(title = "GDP and life expectancy in {round(frame_time, 0)}")
+  anim_save("../atlas/gdp_life-exp.gif", animation = an, height = 800, width = 800, nframes = 200)
+```
+
 
 ```{r animation, echo=FALSE, fig.cap="", out.width = '100%'}
 knitr::include_graphics("../atlas/gdp_life-exp.gif")
