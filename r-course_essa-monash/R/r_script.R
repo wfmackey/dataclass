@@ -39,6 +39,9 @@
     # Get the mean of a single column
     mean(mtcars$mpg)
     
+    # Exercises
+    # (try to work them out yourself)
+    
     
   # Packages ---------------------------------------------------------
     
