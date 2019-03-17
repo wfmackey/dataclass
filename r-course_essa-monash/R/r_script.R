@@ -93,26 +93,13 @@
     p
     
     # Adding facets
-    p +
-      facet_wrap(~continent)
+    p_facet <- p +
+         facet_wrap(~continent)
     
-    
-    # We could also plot this weird thing
-    ggplot(data = gapminder) +
-      aes(x = lifeExp,
-          y = gdpPercap,
-          colour = year,
-          size = pop,
-          group = country) +
-      geom_path(size = 1, alpha = .7) +
-      scale_y_log10() +
-      theme_dark() +
-      facet_wrap(~continent)
-    
-
+  
     
     # Exercise
-    p <- ggplot(data = gapminder) +
+    ggplot(data = gapminder) +
       aes(x = gdpPercap,
           y = pop,
           colour = lifeExp,
@@ -122,8 +109,20 @@
       scale_y_log10() +
       scale_x_log10() +
       theme_dark()
+
     
-    p
+    # Interactive charts with plotly
+    
+      # Install required package:
+      # (you will need to remove the ##):
+      
+      ##  install.packages("plotly")
+      library(plotly)
+      
+      # Take our p plot and put it inside ggplotly:
+      ggplotly(p_facet)
+      
+    
     
     
     # Animation
@@ -192,7 +191,8 @@
 # Part 5: Maps -----------------------------------------------------
     
     # Install the sf package
-    ## install.packages("sf")
+    #   Remove the ## and run the line to install the package
+    ##  install.packages("sf")
     
     # Load sf package
     library(sf)
@@ -243,8 +243,9 @@
     
     # We can generate multiple plots and present them together using
     # the gridExtra package
-  
-    ## install.packages(gridExtra)
+    
+    #   Remove the ## and run the line to install the package:
+    ##  install.packages("gridExtra")
     
     library(gridExtra)
     
